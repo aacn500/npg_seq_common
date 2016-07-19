@@ -17,7 +17,7 @@ pushd /tmp
 export ILLUMINA2BAM_VERSION="1.19"
 wget https://github.com/wtsi-npg/illumina2bam/releases/download/V${ILLUMINA2BAM_VERSION}/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
 unzip Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
-export CLASSPATH=Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}:$CLASSPATH
+export CLASSPATH=/tmp/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}:$CLASSPATH
 
 
 ### Install third party tools ###
@@ -26,16 +26,16 @@ sudo apt-get install bwa
 
 # samtools with cram
 git clone --branch develop --depth 1 https://github.com/samtools/htslib.git
-pushd htslib
-make
-sudo make install
-popd
+#pushd htslib
+#make
+#sudo make install
+#popd
 git clone --branch develop --depth 1 https://github.com/jkbonfield/samtools.git
 git clone --depth 1 git://git.savannah.gnu.org/autoconf-archive.git
 pushd samtools
 aclocal -I ../autoconf-archive/m4
 autoconf
-./configure
+./configure --with-htslib=/tmp/htslib/htslib
 make
 sudo make install
 popd
