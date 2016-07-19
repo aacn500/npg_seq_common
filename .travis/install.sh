@@ -82,7 +82,7 @@ export CLASSPATH=/tmp/picard-tools-${PICARD_VERSION}:$CLASSPATH
 
 #biobambam
 # still in /tmp
-git clone -b 0.0.168-release-20141013091820 https://github.com/gt1/libmaus.git libmaus
+git clone -b 0.0.196-release-20150326095654 https://github.com/gt1/libmaus.git libmaus
 pushd libmaus
 autoreconf -i -f
 ./configure
