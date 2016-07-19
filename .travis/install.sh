@@ -39,7 +39,7 @@ popd
 pushd samtools
 aclocal -I ../autoconf-archive/m4
 autoconf
-./configure --with-htslib=/tmp/htslib/htslib
+./configure
 make
 sudo make install
 popd
