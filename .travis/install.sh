@@ -31,11 +31,11 @@ make
 sudo make install
 popd
 git clone --branch develop --depth 1 https://github.com/jkbonfield/samtools.git
-#git clone --depth 1 git://git.savannah.gnu.org/autoconf-archive.git
+git clone --depth 1 git://git.savannah.gnu.org/autoconf-archive.git
 pushd samtools
-#aclocal -I ../autoconf-archive/m4
-#autoconf
-#./configure
+aclocal -I ../autoconf-archive/m4
+autoconf
+./configure
 make
 sudo make install
 popd
@@ -44,6 +44,9 @@ popd
 # samtools_irods
 git clone --depth 1 https://github.com/wtsi-npg/samtools.git samtools_irods
 pushd samtools_irods
+aclocal -I ../autoconf-archive/m4
+autoconf
+./configure
 make
 sudo make install
 popd
