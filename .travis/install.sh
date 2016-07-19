@@ -28,16 +28,18 @@ sudo apt-get install bwa
 
 wget -q https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSION}/htslib-${HTSLIB_VERSION}.tar.bz2 -O /tmp/htslib-${HTSLIB_VERSION}.tar.bz2
 tar xfj /tmp/htslib-${HTSLIB_VERSION}.tar.bz2 -C /tmp
-cd /tmp/htslib-${HTSLIB_VERSION}
+pushd /tmp/htslib-${HTSLIB_VERSION}
 ./configure --enable-plugins
 make
+popd
 
 wget -q https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 -O /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2
 tar xfj /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2 -C /tmp
-cd /tmp/samtools-${SAMTOOLS_VERSION}
+pushd /tmp/samtools-${SAMTOOLS_VERSION}
 ./configure --enable-plugins --with-plugin-path=/tmp/htslib-${HTSLIB_VERSION}
 make all plugins-htslib
 sudo make install
+popd
 
 
 # samtools with cram
@@ -80,7 +82,7 @@ export CLASSPATH=/tmp/picard-tools-${PICARD_VERSION}:$CLASSPATH
 
 #biobambam
 # still in /tmp
-git clone https://github.com/gt1/libmaus.git
+git clone -b 0.0.168-release-20141013091820 https://github.com/gt1/libmaus.git libmaus
 pushd libmaus
 autoreconf -i -f
 ./configure
