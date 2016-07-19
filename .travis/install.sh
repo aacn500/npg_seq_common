@@ -24,7 +24,27 @@ export CLASSPATH=/tmp/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}:$CLASSPATH
 # bwa
 sudo apt-get install bwa
 
-sudo apt-get install samtools
+#sudo apt-get install samtools
+
+# htslib/samtools
+export HTSLIB_VERSION="1.3.1"
+export SAMTOOLS_VERSION="1.3.1"
+
+
+wget -q https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSION}/htslib-${HTSLIB_VERSION}.tar.bz2 -O /tmp/htslib-${HTSLIB_VERSION}.tar.bz2
+tar xfj /tmp/htslib-${HTSLIB_VERSION}.tar.bz2 -C /tmp
+cd /tmp/htslib-${HTSLIB_VERSION}
+./configure --enable-plugins
+make
+
+wget -q https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 -O /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2
+tar xfj /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2 -C /tmp
+cd /tmp/samtools-${SAMTOOLS_VERSION}
+./configure --enable-plugins --with-plugin-path=/tmp/htslib-${HTSLIB_VERSION}
+make all plugins-htslib
+sudo make install
+
+
 # samtools with cram
 #git clone --branch develop --depth 1 https://github.com/samtools/htslib.git
 #pushd htslib
@@ -71,13 +91,14 @@ pushd libmaus
 autoreconf -i -f
 ./configure
 make
-export LIBMAUSPREFIX=/tmp/libmaus
+sudo make install
 popd
 
 git clone https://github.com/gt1/biobambam.git
 pushd biobambam
 autoreconf -i -f
-./configure --with-libmaus=${LIBMAUSPREFIX} --prefix=${HOME}/biobambam
+./configure
+make
 sudo make install
 popd
 
