@@ -11,4 +11,3 @@ perl Build.PL
 ./Build
 
 ./Build test --verbose
-grunt -v
