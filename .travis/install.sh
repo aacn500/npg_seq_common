@@ -11,6 +11,72 @@ sudo apt-get install libgd2-xpm-dev # For npg_tracking
 sudo apt-get install liblzma-dev # For npg_qc
 sudo apt-get install --yes nodejs
 
+pushd /tmp
+
+# illumina2bam
+export ILLUMINA2BAM_VERSION="1.19"
+wget https://github.com/wtsi-npg/illumina2bam/releases/download/V${ILLUMINA2BAM_VERSION}/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
+unzip Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
+export CLASSPATH=Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}:$CLASSPATH
+
+
+### Install third party tools ###
+# bwa
+sudo apt-get install bwa
+
+# samtools with cram
+git clone --branch develop --depth 1 https://github.com/samtools/htslib.git
+pushd htslib
+make
+make install
+popd
+git clone --branch develop --depth 1 https://github.com/jkbonfield/samtools.git
+#git clone --depth 1 git://git.savannah.gnu.org/autoconf-archive.git
+pushd samtools
+#aclocal -I ../autoconf-archive/m4
+#autoconf
+#./configure
+make
+make install
+popd
+
+
+# samtools_irods
+git clone --depth 1 https://github.com/wtsi-npg/samtools.git samtools_irods
+pushd samtools_irods
+make
+make install
+popd
+
+
+# picard
+export PICARD_VERSION="2.5.0" #https://github.com/broadinstitute/picard/releases
+# still in /tmp
+wget https://github.com/broadinstitute/picard/releases/download/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip
+unzip picard-tools-${PICARD_VERSION}.zip
+export CLASSPATH=/tmp/picard-tools-${PICARD_VERSION}:$CLASSPATH
+
+#biobambam
+# still in /tmp
+git clone https://github.com/gt1/libmaus.git
+pushd libmaus
+autoreconf -i -f
+./configure
+make
+popd
+
+git clone https://github.com/gt1/biobambam.git
+pushd biobambam
+autoreconf -i -f
+./configure --with-libmaus=../libmaus --prefix=${HOME}/biobambam
+make install
+popd
+
+popd
+
+export TOOLS_INSTALLED=true
+# Third party tools install done
+
 # CPAN as in npg_npg_deploy
 cpanm --notest --reinstall App::cpanminus
 cpanm --quiet --notest --reinstall ExtUtils::ParseXS
