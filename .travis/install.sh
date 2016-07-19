@@ -28,7 +28,7 @@ sudo apt-get install bwa
 git clone --branch develop --depth 1 https://github.com/samtools/htslib.git
 pushd htslib
 make
-make install
+sudo make install
 popd
 git clone --branch develop --depth 1 https://github.com/jkbonfield/samtools.git
 #git clone --depth 1 git://git.savannah.gnu.org/autoconf-archive.git
@@ -37,7 +37,7 @@ pushd samtools
 #autoconf
 #./configure
 make
-make install
+sudo make install
 popd
 
 
@@ -45,7 +45,7 @@ popd
 git clone --depth 1 https://github.com/wtsi-npg/samtools.git samtools_irods
 pushd samtools_irods
 make
-make install
+sudo make install
 popd
 
 
@@ -69,7 +69,7 @@ git clone https://github.com/gt1/biobambam.git
 pushd biobambam
 autoreconf -i -f
 ./configure --with-libmaus=../libmaus --prefix=${HOME}/biobambam
-make install
+sudo make install
 popd
 
 popd
