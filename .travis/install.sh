@@ -71,12 +71,13 @@ pushd libmaus
 autoreconf -i -f
 ./configure
 make
+export LIBMAUSPREFIX=/tmp/libmaus
 popd
 
 git clone https://github.com/gt1/biobambam.git
 pushd biobambam
 autoreconf -i -f
-./configure --with-libmaus=../libmaus --prefix=${HOME}/biobambam
+./configure --with-libmaus=${LIBMAUSPREFIX} --prefix=${HOME}/biobambam
 sudo make install
 popd
 
