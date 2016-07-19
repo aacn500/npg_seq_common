@@ -1,0 +1,23 @@
+# This file was adapted from work by Keith James (keithj). The original source
+# can be found as part of the wtsi-npg/data_handling project here:
+#
+#   https://github.com/wtsi-npg/data_handling
+
+sudo: required
+
+language: perl
+
+perl:
+  - "5.16"
+
+env:
+  global:
+    - DNAP_UTILITIES_VERSION="0.5.1"
+
+before install:
+ - ./.travis/before_install.sh
+install:
+ - ./.travis/install.sh
+script:
+ - ./.travis/script.sh
+
