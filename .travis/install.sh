@@ -14,7 +14,6 @@ sudo apt-get install --yes nodejs
 pushd /tmp
 
 # illumina2bam
-export ILLUMINA2BAM_VERSION="1.19"
 wget https://github.com/wtsi-npg/illumina2bam/releases/download/V${ILLUMINA2BAM_VERSION}/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
 unzip Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
 export CLASSPATH=/tmp/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}:$CLASSPATH
@@ -27,9 +26,6 @@ sudo apt-get install bwa
 #sudo apt-get install samtools
 
 # htslib/samtools
-export HTSLIB_VERSION="1.3.1"
-export SAMTOOLS_VERSION="1.3.1"
-
 
 wget -q https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSION}/htslib-${HTSLIB_VERSION}.tar.bz2 -O /tmp/htslib-${HTSLIB_VERSION}.tar.bz2
 tar xfj /tmp/htslib-${HTSLIB_VERSION}.tar.bz2 -C /tmp
@@ -78,7 +74,6 @@ sudo make install
 
 
 # picard
-export PICARD_VERSION="2.5.0" #https://github.com/broadinstitute/picard/releases
 # still in /tmp
 wget https://github.com/broadinstitute/picard/releases/download/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip
 unzip picard-tools-${PICARD_VERSION}.zip
