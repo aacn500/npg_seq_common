@@ -32,6 +32,10 @@ git clone --branch develop --depth 1 https://github.com/samtools/htslib.git
 #popd
 git clone --branch develop --depth 1 https://github.com/jkbonfield/samtools.git
 git clone --depth 1 git://git.savannah.gnu.org/autoconf-archive.git
+pushd autoconf-archive
+wget https://github.com/samtools/samtools/files/62424/ax_with_htslib.m4.txt
+mv ax_with_htslib.m4.txt ax_with_htslib.m4
+popd
 pushd samtools
 aclocal -I ../autoconf-archive/m4
 autoconf
