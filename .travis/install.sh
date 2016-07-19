@@ -9,7 +9,6 @@ set -e -x
 
 sudo apt-get install libgd2-xpm-dev # For npg_tracking
 sudo apt-get install liblzma-dev # For npg_qc
-sudo apt-get install --yes nodejs
 
 # CPAN as in npg_npg_deploy
 cpanm --notest --reinstall App::cpanminus
