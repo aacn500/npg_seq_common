@@ -100,7 +100,6 @@ popd
 
 popd
 
-export TOOLS_INSTALLED=true
 # Third party tools install done
 
 # CPAN as in npg_npg_deploy
