@@ -52,22 +52,22 @@ unzip Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
 wget https://sourceforge.net/projects/picard/files/picard-tools/${PICARD_TOOLS}/picard-tools-${PICARD_TOOLS}.zip/download -O picard-tools-${PICARD_TOOLS}.zip
 unzip picard-tools-${PICARD_TOOLS}.zip
 
-#biobambam
-git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus.git libmaus
-pushd libmaus
-autoreconf -i -f
-./configure
-make
-sudo make install
-popd
+# libmaus/biobambam
+# git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus.git libmaus
+# pushd libmaus
+# autoreconf -i -f
+# ./configure
+# make
+# sudo make install
+# popd
 
-git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam.git biobambam
-pushd biobambam
-autoreconf -i -f
-./configure
-make
-sudo make install
-popd
+# git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam.git biobambam
+# pushd biobambam
+# autoreconf -i -f
+# ./configure
+# make
+# sudo make install
+# popd
 
 popd
 
