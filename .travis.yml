@@ -23,6 +23,7 @@ env:
     - PICARD_VERSION="2.5.0"
     - TOOLS_INSTALLED=1
 #    - TEST_AUTHOR=1 # disabled to avoid perl critic complaints
+    - CLASSPATH="/tmp/picard-tools-2.5.0:/tmp/Illumina2bam-tools-V1.19"
 
 before_install:
  - ./.travis/before_install.sh
