@@ -1,28 +1,27 @@
 #!/bin/bash
 
-# This script was adapted from work by Keith James (keithj). The original source
-# can be found as part of the wtsi-npg/data_handling project here:
+# This file was adapted from work by Keith James (keithj) and Jaime Tovar Corona
+# (jmtc). The original source can be found as part of the wtsi-npg/data_handling
+# and wtsi-npg/qc projects here:
 #
 #   https://github.com/wtsi-npg/data_handling
+#   https://github.com/wtsi-npg/npg_wc
+
 
 set -e -x
 
 sudo apt-get install libgd2-xpm-dev # For npg_tracking
 sudo apt-get install liblzma-dev # For npg_qc
 
-pushd /tmp
-
-# illumina2bam
-wget https://github.com/wtsi-npg/illumina2bam/releases/download/V${ILLUMINA2BAM_VERSION}/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
-unzip Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
-export CLASSPATH=/tmp/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}:$CLASSPATH
-
 
 ### Install third party tools ###
+
+pushd /tmp
+
 # bwa
+
 sudo apt-get install bwa
 
-#sudo apt-get install samtools
 
 # htslib/samtools
 
@@ -42,47 +41,19 @@ sudo make install
 popd
 
 
-# samtools with cram
-#git clone --branch develop --depth 1 https://github.com/samtools/htslib.git
-#pushd htslib
-#make
-#sudo make install
-#popd
-#git clone --branch develop --depth 1 https://github.com/jkbonfield/samtools.git
-#git clone --depth 1 git://git.savannah.gnu.org/autoconf-archive.git
-#pushd autoconf-archive
-#wget https://github.com/samtools/samtools/files/62424/ax_with_htslib.m4.txt
-#mv ax_with_htslib.m4.txt ax_with_htslib.m4
-#popd
-#pushd samtools
-#aclocal -I ../autoconf-archive/m4
-#autoconf
-#./configure
-#make
-#sudo make install
-#popd
-
-
-# samtools_irods
-#git clone --depth 1 https://github.com/wtsi-npg/samtools.git samtools_irods
-#pushd samtools_irods
-#aclocal -I ../autoconf-archive/m4
-#autoconf
-#./configure
-#make
-#sudo make install
-#popd
+# illumina2bam
+wget https://github.com/wtsi-npg/illumina2bam/releases/download/V${ILLUMINA2BAM_VERSION}/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
+unzip Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
+export CLASSPATH=/tmp/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}:$CLASSPATH
 
 
 # picard
-# still in /tmp
 wget https://github.com/broadinstitute/picard/releases/download/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip
 unzip picard-tools-${PICARD_VERSION}.zip
 export CLASSPATH=/tmp/picard-tools-${PICARD_VERSION}:$CLASSPATH
 
 #biobambam
-# still in /tmp
-git clone -b 0.0.196-release-20150326095654 https://github.com/gt1/libmaus.git libmaus
+git clone --b ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus.git libmaus
 pushd libmaus
 autoreconf -i -f
 ./configure
@@ -90,7 +61,7 @@ make
 sudo make install
 popd
 
-git clone https://github.com/gt1/biobambam.git
+git clone --b ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam.git biobambam
 pushd biobambam
 autoreconf -i -f
 ./configure
