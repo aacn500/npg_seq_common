@@ -26,6 +26,20 @@ sudo apt-get install bwa
 #make
 #popd
 
+# bowtie
+
+git clone --branch ${BOWTIE_VERSION} --depth 1 https://github.com/dkj/bowtie.git bowtie
+pushd bowtie
+make
+popd
+
+# bowtie2 
+
+git clone --branch ${BOWTIE2_VERSION} --depth 1 https://github.com/BenLangmead/bowtie2.git bowtie2
+pushd bowtie2
+make
+popd
+
 # htslib/samtools
 
 wget -q https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSION}/htslib-${HTSLIB_VERSION}.tar.bz2 -O /tmp/htslib-${HTSLIB_VERSION}.tar.bz2
