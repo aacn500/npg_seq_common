@@ -44,13 +44,11 @@ popd
 # illumina2bam
 wget https://github.com/wtsi-npg/illumina2bam/releases/download/V${ILLUMINA2BAM_VERSION}/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
 unzip Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
-export CLASSPATH=/tmp/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}:$CLASSPATH
 
 
 # picard
 wget https://github.com/broadinstitute/picard/releases/download/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip
 unzip picard-tools-${PICARD_VERSION}.zip
-export CLASSPATH=/tmp/picard-tools-${PICARD_VERSION}:$CLASSPATH
 
 #biobambam
 git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus.git libmaus
