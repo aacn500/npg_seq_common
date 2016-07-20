@@ -5,7 +5,7 @@
 # and wtsi-npg/qc projects here:
 #
 #   https://github.com/wtsi-npg/data_handling
-#   https://github.com/wtsi-npg/npg_wc
+#   https://github.com/wtsi-npg/npg_qc
 
 
 set -e -x
