@@ -42,8 +42,13 @@ popd
 
 
 # illumina2bam
-wget https://github.com/wtsi-npg/illumina2bam/releases/download/V${ILLUMINA2BAM_VERSION}/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
-unzip Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
+# wget https://github.com/wtsi-npg/illumina2bam/releases/download/V${ILLUMINA2BAM_VERSION}/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
+# unzip Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
+
+git clone --branch V${ILLUMINA2BAM_VERSION} --depth 1 https://github.com/wtsi-npg/illumina2bam.git illumina2bam
+pushd illumina2bam
+ant -lib lib/bcel jar
+popd
 
 
 # picard
