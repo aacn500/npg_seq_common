@@ -21,7 +21,10 @@ pushd /tmp
 # bwa
 
 sudo apt-get install bwa
-
+#git clone --branch 0.5.10-mt_fixes.2 --depth 1 https://github.com/wtsi-npg/bwa.git bwa
+#pushd bwa
+#make
+#popd
 
 # htslib/samtools
 
@@ -54,8 +57,8 @@ popd
 # picard
 #wget https://github.com/broadinstitute/picard/releases/download/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip
 #unzip picard-tools-${PICARD_VERSION}.zip
-wget https://sourceforge.net/projects/picard/files/picard-tools/${PICARD_TOOLS}/picard-tools-${PICARD_TOOLS}.zip/download -O picard-tools-${PICARD_TOOLS}.zip
-unzip picard-tools-${PICARD_TOOLS}.zip
+wget https://sourceforge.net/projects/picard/files/picard-tools/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip/download -O picard-tools-${PICARD_VERSION}.zip
+unzip picard-tools-${PICARD_VERSION}.zip
 
 # libmaus/biobambam
 # git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus.git libmaus
