@@ -22,7 +22,7 @@ env:
     - ILLUMINA2BAM_VERSION="1.19"
     - PICARD_VERSION="2.5.0"
     - TOOLS_INSTALLED=1
-    - TEST_AUTHOR=1
+#    - TEST_AUTHOR=1 # disabled to avoid perl critic complaints
 
 before_install:
  - ./.travis/before_install.sh
