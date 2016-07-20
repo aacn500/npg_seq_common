@@ -49,8 +49,8 @@ unzip Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
 # picard
 #wget https://github.com/broadinstitute/picard/releases/download/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip
 #unzip picard-tools-${PICARD_VERSION}.zip
-wget http://downloads.sourceforge.net/project/picard/picard-tools/1.31/picard-tools-1.31.zip
-unzip picard-tools-1.31.zip
+wget https://sourceforge.net/projects/picard/files/picard-tools/${PICARD_TOOLS}/picard-tools-${PICARD_TOOLS}.zip/download -O picard-tools-${PICARD_TOOLS}.zip
+unzip picard-tools-${PICARD_TOOLS}.zip
 
 #biobambam
 git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus.git libmaus
