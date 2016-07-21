@@ -35,4 +35,6 @@ install:
  - ./.travis/install.sh
 script:
  - ./.travis/script.sh
+after_script:
+ - ./.travis/after_script.sh
 
