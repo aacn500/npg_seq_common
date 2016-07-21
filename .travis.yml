@@ -25,7 +25,7 @@ env:
     - PICARD_VERSION="1.72"
     - TOOLS_INSTALLED=1
 #    - TEST_AUTHOR=1 # disabled to avoid perl critic complaints
-    - CLASSPATH="/tmp/picard-tools-${PICARD_VERSION}:/tmp/illumina2bam"
+    - CLASSPATH="/tmp/picard-tools-${PICARD_VERSION}:/tmp/illumina2bam/dist"
     - PATH="$PATH:/tmp/bowtie:/tmp/bowtie2"
 
 
