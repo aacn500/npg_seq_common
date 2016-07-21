@@ -54,9 +54,10 @@ popd
 #wget http://sourceforge.net/projects/staden/files/io_lib/${STADEN_IO_LIB_VERSION}/io_lib-${STADEN_IO_LIB_VERSION}.tar.gz/download -O io_lib.tar.gz
 #tar xzf io_lib.tar.gz
 #./io_lib-${STADEN_IO_LIB_VERSION}/configure
-#
+
 # pb_calibration # for calibration_pu
 # symlink calibration_pu to echo to avoid needing to actually install it
+mkdir /tmp/pb_calibration
 sudo ln -s /bin/echo /tmp/pb_calibration/calibration_pu
 #git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
 #pushd pb_calibration
