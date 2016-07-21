@@ -40,3 +40,4 @@ script:
 after_script:
  - ls -al /tmp
  - ls -al /tmp/Ref_Maker_test*/*
+ - find /tmp -name E-coli-K12*{.dict, .json} -exec cat {} \;
