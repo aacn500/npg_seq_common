@@ -60,6 +60,8 @@ popd
 mkdir /tmp/symlinks
 sudo ln -s /bin/echo /tmp/symlinks/calibration_pu
 sudo ln -s /bin/echo /tmp/symlinks/cram_index
+sudo ln -s /bin/echo /tmp/symlinks/bamsort
+
 #git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
 #pushd pb_calibration
 #./configure --with-io_lib=/tmp/io_lib-${IO_LIB_VERSION} LD_RUN_PATH=/tmp/io_lib-${IO_LIB_VERSION} --with-samtools=/tmp/samtools-0.1.19
