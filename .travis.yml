@@ -17,6 +17,8 @@ env:
     - DNAP_UTILITIES_VERSION="0.5.1"
     - BOWTIE_VERSION="v1.0.1-dkj-fopen_with_MM"
     - BOWTIE2_VERSION="v2.2.7"
+    - PB_CALIBRATION_VERSION="10.26"
+    - STADEN_IO_LIB_VERSION="1.14.6"
     - LIBMAUS_VERSION="0.0.196-release-20150326095654"
     - BIOBAMBAM_VERSION="0.0.191-release-20150401083643"
     - HTSLIB_VERSION="1.3.1"
@@ -26,7 +28,7 @@ env:
     - TOOLS_INSTALLED=1
 #    - TEST_AUTHOR=1 # disabled to avoid perl critic complaints
     - CLASSPATH="/tmp/picard-tools-${PICARD_VERSION}:/tmp/illumina2bam/dist"
-    - PATH="$PATH:/tmp/bowtie:/tmp/bowtie2"
+    - PATH="$PATH:/tmp/bowtie:/tmp/bowtie2:/tmp/pb_calibration"
 
 
 before_install:
