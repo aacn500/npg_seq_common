@@ -126,7 +126,7 @@ popd
 cpanm --notest --reinstall App::cpanminus
 cpanm --quiet --notest --reinstall ExtUtils::ParseXS
 #cpanm --quiet --notest --reinstall MooseX::Role::Parameterized
-#cpanm --quiet --notest Alien::Tidyp
+# cpanm --quiet --notest Alien::Tidyp
 cpanm --no-lwp --notest https://github.com/wtsi-npg/perl-dnap-utilities/releases/download/${DNAP_UTILITIES_VERSION}/WTSI-DNAP-Utilities-${DNAP_UTILITIES_VERSION}.tar.gz
 
 # WTSI NPG Perl repo dependencies
