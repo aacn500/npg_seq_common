@@ -36,4 +36,6 @@ install:
 script:
  - ./.travis/script.sh
 after_script:
+ - ls -al /tmp
+ - ls -al /tmp/*
  - cat /tmp/Ref_Maker_test*/Ref_Maker.log
