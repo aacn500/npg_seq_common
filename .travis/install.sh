@@ -26,6 +26,13 @@ sudo apt-get install bwa
 #make
 #popd
 
+# smalt
+
+wget http://downloads.sourceforge.net/project/smalt/smalt-$version-bin.tar.gz
+tar -zxf smalt-${SMALT_VERSION}-bin.tar.gz
+ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/symlinks/smalt
+
+
 # bowtie
 
 git clone --branch ${BOWTIE_VERSION} --depth 1 https://github.com/dkj/bowtie.git bowtie
