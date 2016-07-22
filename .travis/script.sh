@@ -16,4 +16,4 @@ cpanm --notest --installdeps . || find /home/travis/.cpanm/work -cmin -1 -name '
 perl Build.PL
 ./Build
 
-./Build test --verbose --test-files t/10-refmaker.t
+./Build test --verbose
