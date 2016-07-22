@@ -19,11 +19,18 @@ pushd /tmp
 
 # bwa
 
-#sudo apt-get install bwa
-git clone --branch 0.5.10-mt_fixes.2 --depth 1 https://github.com/wtsi-npg/bwa.git bwa
+git clone --branch ${BWA_VERSION} --depth 1 https://github.com/wtsi-npg/bwa.git bwa
 pushd bwa
 make
 ln -s /tmp/bwa/bwa /tmp/bin/bwa
+popd
+
+# bwa0_6
+
+git clone --branch ${BWA0_6_VERSION} --depth 1 https://github.com/lh3/bwa.git bwa0_6
+pushd bwa0_6
+make
+ln -s /tmp/bwa0_6/bwa /tmp/bin/bwa0_6
 popd
 
 # smalt
