@@ -28,7 +28,7 @@ env:
     - SAMTOOLS_VERSION="0.1.18"
     - ILLUMINA2BAM_VERSION="1.18"
     - PICARD_VERSION="1.72"
-    - SMALT_VERSION="0.7.4.4"
+    - SMALT_VERSION="0.7.6"
     - TOOLS_INSTALLED=1
 #    - TEST_AUTHOR=1 # disabled to avoid perl critic complaints
     - CLASSPATH="/tmp/picard-tools-${PICARD_VERSION}:/tmp/illumina2bam/dist"
