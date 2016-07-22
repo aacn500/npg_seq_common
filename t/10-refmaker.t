@@ -29,11 +29,12 @@ local $ENV{'PATH'} = join q[:], join(q[/], $startDir, 'scripts'), $ENV{'PATH'};
 
 chdir($tmp);
 
-diag $ENV{'PWD'} . "  Before refmaker";
+diag $ENV{'PWD'} . "  Before refmaker according to env";
+diag getcwd() . "  Before refmaker according to perl";
+is(system("cd $tmp && $startDir/bin/Ref_Maker"), 0, 'Ref_Maker exit status');
 
-is(system("cd $tmp && $startDir/bin/Ref_Maker &> Ref_Maker.log"), 0, 'Ref_Maker exit status');
-
-diag $ENV{'PWD'} . "  After refmaker";
+diag $ENV{'PWD'} . "  After refmaker according to env";
+diag getcwd() . "  After refmaker according to perl";
 # can't use checksum on Picard .dict, as it contains full path to fasta file
 my $picard = "$tmp/picard/E-coli-K12.fa.dict";
 ok(-e $picard, "Picard .dict file exists");

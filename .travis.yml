@@ -46,5 +46,6 @@ script:
 after_script:
  - ls -al /tmp
  - ls -al /tmp/Ref_Maker_test*/*
+ - echo "HOME is at $HOME"
  - ls -al $HOME/
  - find /tmp -name E-coli-K12.fa.dict -exec cat {} \;
