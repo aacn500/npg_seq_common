@@ -14,6 +14,7 @@ perl:
 
 env:
   global:
+    - SH=bash
     - DNAP_UTILITIES_VERSION="0.5.1"
     - BWA_VERSION="0.5.10-mt_fixes.2"
     - BWA0_6_VERSION="v0.7.13"
