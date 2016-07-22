@@ -13,7 +13,6 @@ set -e -x
 sudo apt-get install libgd2-xpm-dev # For npg_tracking
 sudo apt-get install liblzma-dev # For npg_qc
 
-
 ### Install third party tools ###
 
 pushd /tmp
@@ -39,6 +38,7 @@ ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
 git clone --branch ${BOWTIE_VERSION} --depth 1 https://github.com/dkj/bowtie.git bowtie
 pushd bowtie
 make
+ln -s /tmp/bin/bowtie /tmp/bowtie/bowtie
 popd
 
 # bowtie2 
@@ -46,6 +46,7 @@ popd
 git clone --branch ${BOWTIE2_VERSION} --depth 1 https://github.com/BenLangmead/bowtie2.git bowtie2
 pushd bowtie2
 make
+ln -s /tmp/bin/bowtie2 /tmp/bowtie2/bowtie2
 popd
 
 # samtools 0.1.19
@@ -54,6 +55,7 @@ wget http://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1
 tar jxf samtools-0.1.19.tar.bz2
 pushd samtools-0.1.19
 make
+ln -s /tmp/bin/samtools /tmp/samtools-0.1.19/samtools
 popd
 
  
@@ -65,7 +67,6 @@ popd
 
 # pb_calibration # for calibration_pu
 # symlink calibration_pu to echo to avoid needing to actually install it
-mkdir /tmp/symlinks
 sudo ln -s /bin/echo /tmp/bin/calibration_pu
 sudo ln -s /bin/echo /tmp/bin/cram_index
 sudo ln -s /bin/echo /tmp/bin/bamsort

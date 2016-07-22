@@ -18,3 +18,6 @@ sudo apt-get update -qq
 sudo mkdir -p /usr/local/bin
 sudo ln -s /bin/bash /usr/local/bin/bash
 /usr/local/bin/bash --version
+
+# Install 3rd party tools to /tmp/bin
+mkdir -p /tmp/bin
