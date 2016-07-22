@@ -86,9 +86,9 @@ popd
 
 # pb_calibration # for calibration_pu
 # symlink calibration_pu to echo to avoid needing to actually install it
-#sudo ln -s /bin/echo /tmp/bin/calibration_pu
-#sudo ln -s /bin/echo /tmp/bin/cram_index
-#sudo ln -s /bin/echo /tmp/bin/bamsort
+ln -s /bin/echo /tmp/bin/calibration_pu
+ln -s /bin/echo /tmp/bin/cram_index
+ln -s /bin/echo /tmp/bin/bamsort
 
 #git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
 #pushd pb_calibration
