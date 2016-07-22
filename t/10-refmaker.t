@@ -31,6 +31,7 @@ chdir($tmp);
 
 is(system("$startDir/bin/Ref_Maker &> Ref_Maker.log"), 0, 'Ref_Maker exit status');
 
+diag $ENV{'PWD'} . "  Here I am";
 # can't use checksum on Picard .dict, as it contains full path to fasta file
 my $picard = "picard/E-coli-K12.fa.dict";
 ok(-e $picard, "Picard .dict file exists");
