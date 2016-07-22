@@ -20,17 +20,18 @@ pushd /tmp
 
 # bwa
 
-sudo apt-get install bwa
-#git clone --branch 0.5.10-mt_fixes.2 --depth 1 https://github.com/wtsi-npg/bwa.git bwa
-#pushd bwa
-#make
-#popd
+#sudo apt-get install bwa
+git clone --branch 0.5.10-mt_fixes.2 --depth 1 https://github.com/wtsi-npg/bwa.git bwa
+pushd bwa
+make
+ln -s /tmp/bwa/bwa /tmp/bin/bwa
+popd
 
 # smalt
 
 wget http://downloads.sourceforge.net/project/smalt/smalt-$version-bin.tar.gz
 tar -zxf smalt-${SMALT_VERSION}-bin.tar.gz
-ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/symlinks/smalt
+ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
 
 
 # bowtie
@@ -65,9 +66,9 @@ popd
 # pb_calibration # for calibration_pu
 # symlink calibration_pu to echo to avoid needing to actually install it
 mkdir /tmp/symlinks
-sudo ln -s /bin/echo /tmp/symlinks/calibration_pu
-sudo ln -s /bin/echo /tmp/symlinks/cram_index
-sudo ln -s /bin/echo /tmp/symlinks/bamsort
+sudo ln -s /bin/echo /tmp/bin/calibration_pu
+sudo ln -s /bin/echo /tmp/bin/cram_index
+sudo ln -s /bin/echo /tmp/bin/bamsort
 
 #git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
 #pushd pb_calibration
@@ -93,9 +94,6 @@ sudo ln -s /bin/echo /tmp/symlinks/bamsort
 
 
 # illumina2bam
-# wget https://github.com/wtsi-npg/illumina2bam/releases/download/V${ILLUMINA2BAM_VERSION}/Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
-# unzip Illumina2bam-tools-V${ILLUMINA2BAM_VERSION}.zip
-
 git clone --branch V${ILLUMINA2BAM_VERSION} --depth 1 https://github.com/wtsi-npg/illumina2bam.git illumina2bam
 pushd illumina2bam
 ant -lib lib/bcel jar
@@ -103,8 +101,6 @@ popd
 
 
 # picard
-#wget https://github.com/broadinstitute/picard/releases/download/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip
-#unzip picard-tools-${PICARD_VERSION}.zip
 wget https://sourceforge.net/projects/picard/files/picard-tools/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip/download -O picard-tools-${PICARD_VERSION}.zip
 unzip picard-tools-${PICARD_VERSION}.zip
 
