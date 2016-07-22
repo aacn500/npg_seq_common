@@ -38,7 +38,7 @@ ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
 git clone --branch ${BOWTIE_VERSION} --depth 1 https://github.com/dkj/bowtie.git bowtie
 pushd bowtie
 make
-ln -s /tmp/bin/bowtie /tmp/bowtie/bowtie
+ln -s /tmp/bowtie/bowtie /tmp/bin/bowtie
 popd
 
 # bowtie2 
@@ -46,7 +46,7 @@ popd
 git clone --branch ${BOWTIE2_VERSION} --depth 1 https://github.com/BenLangmead/bowtie2.git bowtie2
 pushd bowtie2
 make
-ln -s /tmp/bin/bowtie2 /tmp/bowtie2/bowtie2
+ln -s /tmp/bowtie2/bowtie2 /tmp/bin/bowtie2
 popd
 
 # samtools 0.1.19
@@ -55,7 +55,7 @@ wget http://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1
 tar jxf samtools-0.1.19.tar.bz2
 pushd samtools-0.1.19
 make
-ln -s /tmp/bin/samtools /tmp/samtools-0.1.19/samtools
+ln -s /tmp/samtools-0.1.19/samtools /tmp/bin/samtools
 popd
 
 # staden_io_lib
