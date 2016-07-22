@@ -39,6 +39,8 @@ git clone --branch ${BOWTIE_VERSION} --depth 1 https://github.com/dkj/bowtie.git
 pushd bowtie
 make
 ln -s /tmp/bowtie/bowtie /tmp/bin/bowtie
+ln -s /tmp/bowtie/bowtie-build /tmp/bin/bowtie-build
+ln -s /tmp/bowtie/bowtie-inspect /tmp/bin/bowtie-inspect
 popd
 
 # bowtie2 
@@ -47,6 +49,17 @@ git clone --branch ${BOWTIE2_VERSION} --depth 1 https://github.com/BenLangmead/b
 pushd bowtie2
 make
 ln -s /tmp/bowtie2/bowtie2 /tmp/bin/bowtie2
+ln -s /tmp/bowtie2/bowtie2-align-l /tmp/bin/bowtie2-align-l
+ln -s /tmp/bowtie2/bowtie2-align-s /tmp/bin/bowtie2-align-s
+
+ln -s /tmp/bowtie2/bowtie2-build /tmp/bin/bowtie2-build
+ln -s /tmp/bowtie2/bowtie2-build-l /tmp/bin/bowtie2-build-l
+ln -s /tmp/bowtie2/bowtie2-build-s /tmp/bin/bowtie2-build-s
+
+ln -s /tmp/bowtie2/bowtie2-inspect /tmp/bin/bowtie2-inspect
+ln -s /tmp/bowtie2/bowtie2-inspect-l /tmp/bin/bowtie2-inspect-l
+ln -s /tmp/bowtie2/bowtie2-inspect-s /tmp/bin/bowtie2-inspect-s
+
 popd
 
 # samtools 0.1.19
