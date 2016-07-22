@@ -28,7 +28,7 @@ env:
     - TOOLS_INSTALLED=1
 #    - TEST_AUTHOR=1 # disabled to avoid perl critic complaints
     - CLASSPATH="/tmp/picard-tools-${PICARD_VERSION}:/tmp/illumina2bam/dist"
-    - PATH="$PATH:/tmp/bowtie:/tmp/bowtie2:/tmp/symlinks"
+    - PATH="$PATH:/tmp/bowtie:/tmp/bowtie2:/tmp/symlinks:/tmp/samtools-0.1.19"
 
 
 before_install:

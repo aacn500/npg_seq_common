@@ -42,11 +42,11 @@ popd
 
 # samtools 0.1.19
 
-#wget http://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2/download -O samtools-0.1.19.tar.bz2
-#tar jxf samtools-0.1.19.tar.bz2
-#pushd samtools-0.1.19
-#make
-#popd
+wget http://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2/download -O samtools-0.1.19.tar.bz2
+tar jxf samtools-0.1.19.tar.bz2
+pushd samtools-0.1.19
+make
+popd
 
  
 # staden_io_lib
@@ -69,20 +69,20 @@ sudo ln -s /bin/echo /tmp/symlinks/bamsort
 
 # htslib/samtools
 
-wget -q https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSION}/htslib-${HTSLIB_VERSION}.tar.bz2 -O /tmp/htslib-${HTSLIB_VERSION}.tar.bz2
-tar xfj /tmp/htslib-${HTSLIB_VERSION}.tar.bz2 -C /tmp
-pushd /tmp/htslib-${HTSLIB_VERSION}
-./configure --enable-plugins
-make
-popd
+#wget -q https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSION}/htslib-${HTSLIB_VERSION}.tar.bz2 -O /tmp/htslib-${HTSLIB_VERSION}.tar.bz2
+#tar xfj /tmp/htslib-${HTSLIB_VERSION}.tar.bz2 -C /tmp
+#pushd /tmp/htslib-${HTSLIB_VERSION}
+#./configure --enable-plugins
+#make
+#popd
 
-wget -q https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 -O /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2
-tar xfj /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2 -C /tmp
-pushd /tmp/samtools-${SAMTOOLS_VERSION}
-./configure --enable-plugins --with-plugin-path=/tmp/htslib-${HTSLIB_VERSION}
-make all plugins-htslib
-sudo make install
-popd
+#wget -q https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 -O /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2
+#tar xfj /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2 -C /tmp
+#pushd /tmp/samtools-${SAMTOOLS_VERSION}
+#./configure --enable-plugins --with-plugin-path=/tmp/htslib-${HTSLIB_VERSION}
+#make all plugins-htslib
+#sudo make install
+#popd
 
 
 # illumina2bam
