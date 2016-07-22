@@ -91,6 +91,7 @@ ln -s /bin/echo /tmp/bin/cram_index
 ln -s /bin/echo /tmp/bin/bamsort
 ln -s /bin/echo /tmp/bin/scramble
 ln -s /bin/echo /tmp/bin/bamseqchksum
+ln -s /bin/echo /tmp/bin/samtools_irods
 
 #git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
 #pushd pb_calibration
