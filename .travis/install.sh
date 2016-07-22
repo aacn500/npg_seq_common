@@ -28,7 +28,7 @@ popd
 
 # smalt
 
-wget http://downloads.sourceforge.net/project/smalt/smalt-$version-bin.tar.gz
+wget http://downloads.sourceforge.net/project/smalt/smalt-${SMALT_VERSION}-bin.tar.gz
 tar -zxf smalt-${SMALT_VERSION}-bin.tar.gz
 ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
 
@@ -58,7 +58,6 @@ make
 ln -s /tmp/bin/samtools /tmp/samtools-0.1.19/samtools
 popd
 
- 
 # staden_io_lib
 
 #wget http://sourceforge.net/projects/staden/files/io_lib/${STADEN_IO_LIB_VERSION}/io_lib-${STADEN_IO_LIB_VERSION}.tar.gz/download -O io_lib.tar.gz
