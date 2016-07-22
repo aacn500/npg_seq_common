@@ -81,14 +81,14 @@ $ref_size = -s "fasta/$files[0]";
 
 
 my %build = (
-    bowtie    => 0,
-    bowtie2   => 0,
-    bwa       => 0,
-    bwa0_6    => 0,
-    npgqc     => 0,
+#    bowtie    => 0,
+#    bowtie2   => 0,
+#    bwa       => 0,
+#    bwa0_6    => 0,
+#    npgqc     => 0,
     picard    => 0,
-    samtools  => 0,
-    smalt     => 0,
+#    samtools  => 0,
+#    smalt     => 0,
 );
 GetOptions( \%build, keys %build );
 

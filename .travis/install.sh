@@ -8,143 +8,143 @@
 #   https://github.com/wtsi-npg/npg_qc
 
 
-set -e -x
-
-sudo apt-get install libgd2-xpm-dev # For npg_tracking
-sudo apt-get install liblzma-dev # For npg_qc
-
-### Install third party tools ###
-
-pushd /tmp
-
-# bwa
-
-git clone --branch ${BWA_VERSION} --depth 1 https://github.com/wtsi-npg/bwa.git bwa
-pushd bwa
-make
-ln -s /tmp/bwa/bwa /tmp/bin/bwa
-popd
-
-# bwa0_6
-
-git clone --branch ${BWA0_6_VERSION} --depth 1 https://github.com/lh3/bwa.git bwa0_6
-pushd bwa0_6
-make
-ln -s /tmp/bwa0_6/bwa /tmp/bin/bwa0_6
-popd
-
-# smalt
-
-wget http://downloads.sourceforge.net/project/smalt/smalt-${SMALT_VERSION}-bin.tar.gz
-tar -zxf smalt-${SMALT_VERSION}-bin.tar.gz
-ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
-
-
-# bowtie
-
-git clone --branch ${BOWTIE_VERSION} --depth 1 https://github.com/dkj/bowtie.git bowtie
-pushd bowtie
-make
-ln -s /tmp/bowtie/bowtie /tmp/bin/bowtie
-ln -s /tmp/bowtie/bowtie-build /tmp/bin/bowtie-build
-ln -s /tmp/bowtie/bowtie-inspect /tmp/bin/bowtie-inspect
-popd
-
-# bowtie2 
-
-git clone --branch ${BOWTIE2_VERSION} --depth 1 https://github.com/BenLangmead/bowtie2.git bowtie2
-pushd bowtie2
-make
-ln -s /tmp/bowtie2/bowtie2 /tmp/bin/bowtie2
-ln -s /tmp/bowtie2/bowtie2-align-l /tmp/bin/bowtie2-align-l
-ln -s /tmp/bowtie2/bowtie2-align-s /tmp/bin/bowtie2-align-s
-
-ln -s /tmp/bowtie2/bowtie2-build /tmp/bin/bowtie2-build
-ln -s /tmp/bowtie2/bowtie2-build-l /tmp/bin/bowtie2-build-l
-ln -s /tmp/bowtie2/bowtie2-build-s /tmp/bin/bowtie2-build-s
-
-ln -s /tmp/bowtie2/bowtie2-inspect /tmp/bin/bowtie2-inspect
-ln -s /tmp/bowtie2/bowtie2-inspect-l /tmp/bin/bowtie2-inspect-l
-ln -s /tmp/bowtie2/bowtie2-inspect-s /tmp/bin/bowtie2-inspect-s
-
-popd
-
-# samtools 0.1.19
-
-wget http://sourceforge.net/projects/samtools/files/samtools/0.1.18/samtools-0.1.18.tar.bz2/download -O samtools-0.1.18.tar.bz2
-tar jxf samtools-0.1.18.tar.bz2
-pushd samtools-0.1.18
-make
-ln -s /tmp/samtools-0.1.18/samtools /tmp/bin/samtools
-popd
-
-# staden_io_lib
-
-#wget http://sourceforge.net/projects/staden/files/io_lib/${STADEN_IO_LIB_VERSION}/io_lib-${STADEN_IO_LIB_VERSION}.tar.gz/download -O io_lib.tar.gz
-#tar xzf io_lib.tar.gz
-#./io_lib-${STADEN_IO_LIB_VERSION}/configure
-
-# pb_calibration # for calibration_pu
-# symlink calibration_pu to echo to avoid needing to actually install it
-#sudo ln -s /bin/echo /tmp/bin/calibration_pu
-#sudo ln -s /bin/echo /tmp/bin/cram_index
-#sudo ln -s /bin/echo /tmp/bin/bamsort
-
-#git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
-#pushd pb_calibration
-#./configure --with-io_lib=/tmp/io_lib-${IO_LIB_VERSION} LD_RUN_PATH=/tmp/io_lib-${IO_LIB_VERSION} --with-samtools=/tmp/samtools-0.1.19
-#popd
-
-# htslib/samtools
-
-#wget -q https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSION}/htslib-${HTSLIB_VERSION}.tar.bz2 -O /tmp/htslib-${HTSLIB_VERSION}.tar.bz2
-#tar xfj /tmp/htslib-${HTSLIB_VERSION}.tar.bz2 -C /tmp
-#pushd /tmp/htslib-${HTSLIB_VERSION}
-#./configure --enable-plugins
+#set -e -x
+#
+##sudo apt-get install libgd2-xpm-dev # For npg_tracking
+##sudo apt-get install liblzma-dev # For npg_qc
+#
+#### Install third party tools ###
+#
+#pushd /tmp
+#
+## bwa
+#
+#git clone --branch ${BWA_VERSION} --depth 1 https://github.com/wtsi-npg/bwa.git bwa
+#pushd bwa
 #make
+#ln -s /tmp/bwa/bwa /tmp/bin/bwa
+#popd
+#
+## bwa0_6
+#
+#git clone --branch ${BWA0_6_VERSION} --depth 1 https://github.com/lh3/bwa.git bwa0_6
+#pushd bwa0_6
+#make
+#ln -s /tmp/bwa0_6/bwa /tmp/bin/bwa0_6
+#popd
+#
+# smalt
+#
+#wget http://downloads.sourceforge.net/project/smalt/smalt-${SMALT_VERSION}-bin.tar.gz
+#tar -zxf smalt-${SMALT_VERSION}-bin.tar.gz
+#ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
+#
+#
+## bowtie
+#
+#git clone --branch ${BOWTIE_VERSION} --depth 1 https://github.com/dkj/bowtie.git bowtie
+#pushd bowtie
+#make
+#ln -s /tmp/bowtie/bowtie /tmp/bin/bowtie
+#ln -s /tmp/bowtie/bowtie-build /tmp/bin/bowtie-build
+#ln -s /tmp/bowtie/bowtie-inspect /tmp/bin/bowtie-inspect
+#popd
+#
+## bowtie2 
+#
+#git clone --branch ${BOWTIE2_VERSION} --depth 1 https://github.com/BenLangmead/bowtie2.git bowtie2
+#pushd bowtie2
+#make
+#ln -s /tmp/bowtie2/bowtie2 /tmp/bin/bowtie2
+#ln -s /tmp/bowtie2/bowtie2-align-l /tmp/bin/bowtie2-align-l
+#ln -s /tmp/bowtie2/bowtie2-align-s /tmp/bin/bowtie2-align-s
+#
+#ln -s /tmp/bowtie2/bowtie2-build /tmp/bin/bowtie2-build
+#ln -s /tmp/bowtie2/bowtie2-build-l /tmp/bin/bowtie2-build-l
+#ln -s /tmp/bowtie2/bowtie2-build-s /tmp/bin/bowtie2-build-s
+#
+#ln -s /tmp/bowtie2/bowtie2-inspect /tmp/bin/bowtie2-inspect
+#ln -s /tmp/bowtie2/bowtie2-inspect-l /tmp/bin/bowtie2-inspect-l
+#ln -s /tmp/bowtie2/bowtie2-inspect-s /tmp/bin/bowtie2-inspect-s
+#
+#popd
+#
+## samtools 0.1.19
+#
+#wget http://sourceforge.net/projects/samtools/files/samtools/0.1.18/samtools-0.1.18.tar.bz2/download -O samtools-0.1.18.tar.bz2
+#tar jxf samtools-0.1.18.tar.bz2
+#pushd samtools-0.1.18
+#make
+#ln -s /tmp/samtools-0.1.18/samtools /tmp/bin/samtools
 #popd
 
-#wget -q https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 -O /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2
-#tar xfj /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2 -C /tmp
-#pushd /tmp/samtools-${SAMTOOLS_VERSION}
-#./configure --enable-plugins --with-plugin-path=/tmp/htslib-${HTSLIB_VERSION}
-#make all plugins-htslib
-#sudo make install
+## staden_io_lib
+#
+##wget http://sourceforge.net/projects/staden/files/io_lib/${STADEN_IO_LIB_VERSION}/io_lib-${STADEN_IO_LIB_VERSION}.tar.gz/download -O io_lib.tar.gz
+##tar xzf io_lib.tar.gz
+##./io_lib-${STADEN_IO_LIB_VERSION}/configure
+
+## pb_calibration # for calibration_pu
+## symlink calibration_pu to echo to avoid needing to actually install it
+##sudo ln -s /bin/echo /tmp/bin/calibration_pu
+##sudo ln -s /bin/echo /tmp/bin/cram_index
+##sudo ln -s /bin/echo /tmp/bin/bamsort
+#
+##git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
+##pushd pb_calibration
+##./configure --with-io_lib=/tmp/io_lib-${IO_LIB_VERSION} LD_RUN_PATH=/tmp/io_lib-${IO_LIB_VERSION} --with-samtools=/tmp/samtools-0.1.19
+##popd
+#
+## htslib/samtools
+#
+##wget -q https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSION}/htslib-${HTSLIB_VERSION}.tar.bz2 -O /tmp/htslib-${HTSLIB_VERSION}.tar.bz2
+##tar xfj /tmp/htslib-${HTSLIB_VERSION}.tar.bz2 -C /tmp
+##pushd /tmp/htslib-${HTSLIB_VERSION}
+##./configure --enable-plugins
+##make
+##popd
+#
+##wget -q https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 -O /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2
+##tar xfj /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2 -C /tmp
+##pushd /tmp/samtools-${SAMTOOLS_VERSION}
+##./configure --enable-plugins --with-plugin-path=/tmp/htslib-${HTSLIB_VERSION}
+##make all plugins-htslib
+##sudo make install
+##popd
+#
+#
+## illumina2bam
+#git clone --branch V${ILLUMINA2BAM_VERSION} --depth 1 https://github.com/wtsi-npg/illumina2bam.git illumina2bam
+#pushd illumina2bam
+#ant -lib lib/bcel jar
 #popd
-
-
-# illumina2bam
-git clone --branch V${ILLUMINA2BAM_VERSION} --depth 1 https://github.com/wtsi-npg/illumina2bam.git illumina2bam
-pushd illumina2bam
-ant -lib lib/bcel jar
-popd
-
-
+#
+#
 # picard
 wget https://sourceforge.net/projects/picard/files/picard-tools/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip/download -O picard-tools-${PICARD_VERSION}.zip
 unzip picard-tools-${PICARD_VERSION}.zip
-
-# libmaus/biobambam
-# git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus.git libmaus
-# pushd libmaus
-# autoreconf -i -f
-# ./configure
-# make
-# sudo make install
-# popd
-
-# git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam.git biobambam
-# pushd biobambam
-# autoreconf -i -f
-# ./configure
-# make
-# sudo make install
-# popd
-
-popd
-
-# Third party tools install done
-
+#
+## libmaus/biobambam
+## git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus.git libmaus
+## pushd libmaus
+## autoreconf -i -f
+## ./configure
+## make
+## sudo make install
+## popd
+#
+## git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam.git biobambam
+## pushd biobambam
+## autoreconf -i -f
+## ./configure
+## make
+## sudo make install
+## popd
+#
+#popd
+#
+## Third party tools install done
+#
 # CPAN as in npg_npg_deploy
 cpanm --notest --reinstall App::cpanminus
 cpanm --quiet --notest --reinstall ExtUtils::ParseXS
