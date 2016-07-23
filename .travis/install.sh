@@ -88,9 +88,9 @@ popd
 # symlink calibration_pu to echo to avoid needing to actually install it
 ln -s /bin/echo /tmp/bin/calibration_pu
 ln -s /bin/echo /tmp/bin/cram_index
-ln -s /bin/echo /tmp/bin/bamsort
+#ln -s /bin/echo /tmp/bin/bamsort
 ln -s /bin/echo /tmp/bin/scramble
-ln -s /bin/echo /tmp/bin/bamseqchksum
+#ln -s /bin/echo /tmp/bin/bamseqchksum
 ln -s /bin/echo /tmp/bin/samtools_irods
 
 #git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
