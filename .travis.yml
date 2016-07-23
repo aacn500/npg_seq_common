@@ -35,6 +35,7 @@ env:
     - CLASSPATH="/tmp/picard-tools-${PICARD_VERSION}:/tmp/illumina2bam/dist"
 #    - PATH="$PATH:/tmp/bowtie:/tmp/bowtie2:/tmp/bin:/tmp/samtools-0.1.19"
     - PATH="$PATH:/tmp/bin"
+    - LD_LIBRARY_PATH="/usr/local/lib"
 
 
 before_install:
