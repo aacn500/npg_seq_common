@@ -80,23 +80,32 @@ popd
 
 # staden_io_lib
 
-#wget http://sourceforge.net/projects/staden/files/io_lib/${STADEN_IO_LIB_VERSION}/io_lib-${STADEN_IO_LIB_VERSION}.tar.gz/download -O io_lib.tar.gz
-#tar xzf io_lib.tar.gz
-#./io_lib-${STADEN_IO_LIB_VERSION}/configure
+wget http://sourceforge.net/projects/staden/files/io_lib/${STADEN_IO_LIB_VERSION}/io_lib-${STADEN_IO_LIB_VERSION}.tar.gz/download -O io_lib.tar.gz
+tar xzf io_lib.tar.gz
+pushd io_lib-${STADEN_IO_LIB_VERSION}
+./configure
+make
+sudo make install
+popd
 
-# pb_calibration # for calibration_pu
 # symlink calibration_pu to echo to avoid needing to actually install it
-ln -s /bin/echo /tmp/bin/calibration_pu
-ln -s /bin/echo /tmp/bin/cram_index
+#ln -s /bin/echo /tmp/bin/calibration_pu
+#ln -s /bin/echo /tmp/bin/cram_index
 #ln -s /bin/echo /tmp/bin/bamsort
-ln -s /bin/echo /tmp/bin/scramble
+#ln -s /bin/echo /tmp/bin/scramble
 #ln -s /bin/echo /tmp/bin/bamseqchksum
 ln -s /bin/echo /tmp/bin/samtools_irods
 
-#git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
-#pushd pb_calibration
-#./configure --with-io_lib=/tmp/io_lib-${IO_LIB_VERSION} LD_RUN_PATH=/tmp/io_lib-${IO_LIB_VERSION} --with-samtools=/tmp/samtools-0.1.19
-#popd
+# pb_calibration # for calibration_pu
+
+git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
+pushd pb_calibration/src
+autoreconf --force --install
+#./configure --with-io_lib=/tmp/io_lib-${STADEN_IO_LIB_VERSION} LD_RUN_PATH=/tmp/io_lib-${STADEN_IO_LIB_VERSION} --with-samtools=/tmp/samtools-0.1.19
+./configure
+make
+make install
+popd
 
 # htslib/samtools
 
