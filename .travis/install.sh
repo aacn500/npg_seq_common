@@ -124,6 +124,25 @@ popd
 #sudo make install
 #popd
 
+git clone --branch 1.3.1-npg-Apr2016 --depth 1 https://github.com/wtsi-npg/htslib.git htslib
+autoreconf -fi
+./configure --prefix=/tmp --enable-plugins
+make
+make install
+
+
+git clone --branch 1.3.1-npg-May2016 --depth 1 https://github.com/wtsi-npg/samtools.git samtools-irods
+mkdir -p acinclude.m4
+pushd acinclude.m4
+curl -L https://github.com/samtools/samtools/files/62424/ax_with_htslib.m4.txt > ax_with_htslib.m4
+curl -L 'http://git.savannah.gnu.org/gitweb/?p=autoconf-archive.git;a=blob_plain;f=m4/ax_with_curses.m4;hb=0351b066631215b4fdc3c672a8ef90b233687655' > ax_with_curses.m4
+popd
+aclocal -I acinclude.m4
+autoreconf -i
+./configure --prefix=/tmp --with-htslib=/tmp/htslib --enable-plugins
+make
+ln -s /tmp/samtools-irods/samtools /tmp/bin/samtools-irods
+
 
 # illumina2bam
 git clone --branch V${ILLUMINA2BAM_VERSION} --depth 1 https://github.com/wtsi-npg/illumina2bam.git illumina2bam
