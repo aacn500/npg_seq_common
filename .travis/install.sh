@@ -137,7 +137,7 @@ aclocal -I acinclude.m4
 autoreconf -i
 ./configure --prefix=/tmp --with-htslib=/tmp/htslib --enable-plugins
 make
-ln -s /tmp/samtools-irods/samtools /tmp/bin/samtools-irods
+ln -s /tmp/samtools-irods/samtools /tmp/bin/samtools_irods
 popd
 
 
