@@ -42,19 +42,26 @@ ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
 
 # bowtie
 
+if [ ! -e bowtie ]; then
 git clone --branch ${BOWTIE_VERSION} --depth 1 https://github.com/dkj/bowtie.git bowtie
 pushd bowtie
 make
+popd;
+fi
 ln -s /tmp/bowtie/bowtie /tmp/bin/bowtie
 ln -s /tmp/bowtie/bowtie-build /tmp/bin/bowtie-build
 ln -s /tmp/bowtie/bowtie-inspect /tmp/bin/bowtie-inspect
-popd
+
 
 # bowtie2 
 
+if [ ! -e bowtie2 ]; then
 git clone --branch ${BOWTIE2_VERSION} --depth 1 https://github.com/BenLangmead/bowtie2.git bowtie2
 pushd bowtie2
 make
+popd;
+fi
+
 ln -s /tmp/bowtie2/bowtie2 /tmp/bin/bowtie2
 ln -s /tmp/bowtie2/bowtie2-align-l /tmp/bin/bowtie2-align-l
 ln -s /tmp/bowtie2/bowtie2-align-s /tmp/bin/bowtie2-align-s
@@ -67,7 +74,6 @@ ln -s /tmp/bowtie2/bowtie2-inspect /tmp/bin/bowtie2-inspect
 ln -s /tmp/bowtie2/bowtie2-inspect-l /tmp/bin/bowtie2-inspect-l
 ln -s /tmp/bowtie2/bowtie2-inspect-s /tmp/bin/bowtie2-inspect-s
 
-popd
 
 # samtools 0.1.19
 
@@ -137,21 +143,31 @@ wget https://sourceforge.net/projects/picard/files/picard-tools/${PICARD_VERSION
 unzip picard-tools-${PICARD_VERSION}.zip
 
 # libmaus/biobambam
+if [ ! -e libmaus ]; then
 git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus.git libmaus
 pushd libmaus
 autoreconf -i -f
-./configure
-make
-sudo make install
+./configure --prefix=/tmp
+make;
+else
+pushd libmaus;
+fi
+make install
 popd
 
+
+if [ ! -e biobambam ]; then
 git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam.git biobambam
 pushd biobambam
 autoreconf -i -f
-./configure
-make
-sudo make install
+./configure --prefix=/tmp
+make;
+else
+pushd biobambam;
+fi
+make install
 popd
+
 
 popd
 

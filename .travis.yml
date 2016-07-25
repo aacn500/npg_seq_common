@@ -11,6 +11,12 @@ language: perl
 
 perl:
   - "5.16"
+cache:
+  directories:
+  - /tmp/libmaus
+  - /tmp/biobambam
+  - /tmp/bowtie
+  - /tmp/bowtie2
 
 env:
   global:
