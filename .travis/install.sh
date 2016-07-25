@@ -134,7 +134,7 @@ popd
 
 
 git clone --branch 1.3.1-npg-May2016 --depth 1 https://github.com/wtsi-npg/samtools.git samtools-irods
-pushd samtools
+pushd samtools-irods
 mkdir -p acinclude.m4
 pushd acinclude.m4
 curl -L https://github.com/samtools/samtools/files/62424/ax_with_htslib.m4.txt > ax_with_htslib.m4
