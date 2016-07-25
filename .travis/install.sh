@@ -101,8 +101,8 @@ ln -s /bin/echo /tmp/bin/samtools_irods
 git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
 pushd pb_calibration/src
 autoreconf --force --install
-#./configure --with-io_lib=/tmp/io_lib-${STADEN_IO_LIB_VERSION} LD_RUN_PATH=/tmp/io_lib-${STADEN_IO_LIB_VERSION} --with-samtools=/tmp/samtools-0.1.19
-./configure
+#./configure --with-io_lib=/tmp/io_lib-${STADEN_IO_LIB_VERSION} LD_RUN_PATH=/tmp/io_lib-${STADEN_IO_LIB_VERSION} --with-samtools=/tmp/samtools-0.1.18
+./configure --with-samtools=/tmp/samtools-0.1.18
 make
 make install
 popd
