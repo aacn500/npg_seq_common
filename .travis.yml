@@ -39,7 +39,7 @@ env:
 
 
 before_install:
- - echo $SHELL
+ - perl -e "system(\"/bin/sh -c \\\"echo $SHELL\\\"\");"
  - ./.travis/before_install.sh
 install:
  - ./.travis/install.sh
