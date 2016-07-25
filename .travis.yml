@@ -39,6 +39,7 @@ env:
 
 
 before_install:
+ - echo $SHELL
  - ./.travis/before_install.sh
 install:
  - ./.travis/install.sh
