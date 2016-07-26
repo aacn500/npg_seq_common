@@ -42,15 +42,11 @@ ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
 
 # bowtie
 
-mkdir -p bowtie
-if [ ! "$(ls -A bowtie)" ]; then
 git clone --branch ${BOWTIE_VERSION} --depth 1 https://github.com/dkj/bowtie.git bowtie
 pushd bowtie
 make
-popd;
-else
-echo "BOWTIE CACHE DETECTED: SKIPPING INSTALL"
-fi
+popd
+
 ln -s /tmp/bowtie/bowtie /tmp/bin/bowtie
 ln -s /tmp/bowtie/bowtie-build /tmp/bin/bowtie-build
 ln -s /tmp/bowtie/bowtie-inspect /tmp/bin/bowtie-inspect
@@ -58,15 +54,10 @@ ln -s /tmp/bowtie/bowtie-inspect /tmp/bin/bowtie-inspect
 
 # bowtie2 
 
-mkdir -p bowtie2
-if [ ! "$(ls -A bowtie2)" ]; then
 git clone --branch ${BOWTIE2_VERSION} --depth 1 https://github.com/BenLangmead/bowtie2.git bowtie2
 pushd bowtie2
 make
-popd;
-else
-echo "BOWTIE2 CACHE DETECTED: SKIPPING INSTALL"
-fi
+popd
 
 ln -s /tmp/bowtie2/bowtie2 /tmp/bin/bowtie2
 ln -s /tmp/bowtie2/bowtie2-align-l /tmp/bin/bowtie2-align-l
@@ -112,22 +103,16 @@ make install
 popd
 
 # htslib/samtools
-mkdir -p htslib
-if [ ! "$(ls -A htslib)" ]; then
+
 git clone --branch 1.3.1-npg-Apr2016 --depth 1 https://github.com/wtsi-npg/htslib.git htslib
 pushd htslib
 autoreconf -fi
 ./configure --prefix=/tmp --enable-plugins
 make
-else
-echo "HTSLIB CACHE DETECTED: SKIPPING INSTALL"
-fi
 make install
 popd
 
 
-mkdir -p samtools-irods
-if [ ! "$(ls -A samtools-irods)" ]; then
 git clone --branch 1.3.1-npg-May2016 --depth 1 https://github.com/wtsi-npg/samtools.git samtools-irods
 pushd samtools-irods
 mkdir -p acinclude.m4
@@ -139,9 +124,6 @@ aclocal -I acinclude.m4
 autoreconf -i
 ./configure --prefix=/tmp --with-htslib=/tmp/htslib --enable-plugins
 make
-else
-echo "SAMTOOLS-IRODS CACHE DETECTED: SKIPPING INSTALL"
-fi
 ln -s /tmp/samtools-irods/samtools /tmp/bin/samtools_irods
 popd
 
@@ -157,42 +139,11 @@ popd
 wget https://sourceforge.net/projects/picard/files/picard-tools/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip/download -O picard-tools-${PICARD_VERSION}.zip
 unzip picard-tools-${PICARD_VERSION}.zip
 
-
-# libmaus/biobambam
-#mkdir -p libmaus
-#if [ ! "$(ls -A libmaus)" ]; then
-#git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus2.git libmaus
-#pushd libmaus
-#autoreconf -i -f
-#./configure --prefix=/tmp
-#make;
-#else
-#echo "LIBMAUS CACHE DETECTED: SKIPPING INSTALL" 
-#pushd libmaus;
-#fi
-#make install
-#popd
-
- 
-#mkdir -p biobambam
-#if [ ! "$(ls -A biobambam)" ]; then
-#git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam2.git biobambam
-#pushd biobambam
-#autoreconf -i -f
-#./configure --prefix=/tmp --with-libmaus2=/tmp
-#make;
-#else
-#echo "BIOBAMBAM CACHE DETECTED: SKIPPING INSTALL"
-#pushd biobambam;
-#fi
-#make install
-#popd
-#
+# biobambam
 
 wget https://github.com/gt1/biobambam2/releases/download/2.0.50-release-20160705161609/biobambam2-2.0.50-release-20160705161609-x86_64-etch-linux-gnu.tar.gz -O biobambam2.tar.gz
 mkdir biobambam2
 tar xzf biobambam2.tar.gz -C biobambam2 --strip-components 1
-
 
 popd
 
