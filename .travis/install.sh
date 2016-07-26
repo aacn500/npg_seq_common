@@ -170,7 +170,7 @@ if [ ! "$(ls -A biobambam)" ]; then
 git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam.git biobambam
 pushd biobambam
 autoreconf -i -f
-./configure --prefix=/tmp
+./configure --prefix=/tmp --with-libmaus=/tmp
 make;
 else
 echo "BIOBAMBAM CACHE DETECTED: SKIPPING INSTALL"
