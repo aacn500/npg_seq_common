@@ -48,6 +48,9 @@ env:
 
 before_install:
  - perl -e "system(\"/bin/sh -c \\\"echo $SHELL\\\"\");"
+ - touch ex1.txt
+ - touch ex2.txt
+ - diff ex1.txt ex2.txt
  - ls -l /bin/
  - sudo rm /bin/sh
  - sudo ln -s /bin/bash /bin/sh
