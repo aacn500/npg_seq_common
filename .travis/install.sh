@@ -164,7 +164,7 @@ fi
 make install
 popd
 
-
+ 
 mkdir -p biobambam
 if [ ! "$(ls -A biobambam)" ]; then
 git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam.git biobambam
