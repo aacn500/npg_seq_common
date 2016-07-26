@@ -19,27 +19,27 @@ pushd /tmp
 
 # bwa
 
-git clone --branch ${BWA_VERSION} --depth 1 https://github.com/wtsi-npg/bwa.git bwa
-pushd bwa
-make
-ln -s /tmp/bwa/bwa /tmp/bin/bwa
-popd
+#git clone --branch ${BWA_VERSION} --depth 1 https://github.com/wtsi-npg/bwa.git bwa
+#pushd bwa
+#make
+#ln -s /tmp/bwa/bwa /tmp/bin/bwa
+#popd
 
 # bwa0_6
 
-git clone --branch ${BWA0_6_VERSION} --depth 1 https://github.com/lh3/bwa.git bwa0_6
-pushd bwa0_6
-make
-ln -s /tmp/bwa0_6/bwa /tmp/bin/bwa0_6
-popd
+#git clone --branch ${BWA0_6_VERSION} --depth 1 https://github.com/lh3/bwa.git bwa0_6
+#pushd bwa0_6
+#make
+#ln -s /tmp/bwa0_6/bwa /tmp/bin/bwa0_6
+#popd
 
 # smalt
 
-wget http://downloads.sourceforge.net/project/smalt/smalt-${SMALT_VERSION}-bin.tar.gz
-tar -zxf smalt-${SMALT_VERSION}-bin.tar.gz
-ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
-
-
+#wget http://downloads.sourceforge.net/project/smalt/smalt-${SMALT_VERSION}-bin.tar.gz
+#tar -zxf smalt-${SMALT_VERSION}-bin.tar.gz
+#ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
+#
+#
 # bowtie
 
 mkdir -p bowtie
@@ -83,33 +83,33 @@ ln -s /tmp/bowtie2/bowtie2-inspect-s /tmp/bin/bowtie2-inspect-s
 
 # samtools 0.1.19
 
-wget http://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2/download -O samtools-0.1.19.tar.bz2
-tar jxf samtools-0.1.19.tar.bz2
-pushd samtools-0.1.19
-make
-ln -s /tmp/samtools-0.1.19/samtools /tmp/bin/samtools
-popd
+#wget http://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2/download -O samtools-0.1.19.tar.bz2
+#tar jxf samtools-0.1.19.tar.bz2
+#pushd samtools-0.1.19
+#make
+#ln -s /tmp/samtools-0.1.19/samtools /tmp/bin/samtools
+#popd
 
 # staden_io_lib
 
-wget http://sourceforge.net/projects/staden/files/io_lib/${STADEN_IO_LIB_VERSION}/io_lib-${STADEN_IO_LIB_VERSION}.tar.gz/download -O io_lib.tar.gz
-tar xzf io_lib.tar.gz
-pushd io_lib-${STADEN_IO_LIB_VERSION}
-./configure --prefix=/tmp
-make
-make install
-popd
+#wget http://sourceforge.net/projects/staden/files/io_lib/${STADEN_IO_LIB_VERSION}/io_lib-${STADEN_IO_LIB_VERSION}.tar.gz/download -O io_lib.tar.gz
+#tar xzf io_lib.tar.gz
+#pushd io_lib-${STADEN_IO_LIB_VERSION}
+#./configure --prefix=/tmp
+#make
+#make install
+#popd
 
 
 # pb_calibration # for calibration_pu
 
-git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
-pushd pb_calibration/src
-autoreconf --force --install
-./configure --with-samtools=/tmp/samtools-0.1.19 --with-io_lib=/tmp --prefix=/tmp
-make
-make install
-popd
+#git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
+#pushd pb_calibration/src
+#autoreconf --force --install
+#./configure --with-samtools=/tmp/samtools-0.1.19 --with-io_lib=/tmp --prefix=/tmp
+#make
+#make install
+#popd
 
 # htslib/samtools
 mkdir -p htslib
@@ -147,16 +147,16 @@ popd
 
 
 # illumina2bam
-git clone --branch V${ILLUMINA2BAM_VERSION} --depth 1 https://github.com/wtsi-npg/illumina2bam.git illumina2bam
-pushd illumina2bam
-ant -lib lib/bcel jar
-popd
+#git clone --branch V${ILLUMINA2BAM_VERSION} --depth 1 https://github.com/wtsi-npg/illumina2bam.git illumina2bam
+#pushd illumina2bam
+#ant -lib lib/bcel jar
+#popd
 
 
 # picard
-wget https://sourceforge.net/projects/picard/files/picard-tools/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip/download -O picard-tools-${PICARD_VERSION}.zip
-unzip picard-tools-${PICARD_VERSION}.zip
-
+#wget https://sourceforge.net/projects/picard/files/picard-tools/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip/download -O picard-tools-${PICARD_VERSION}.zip
+#unzip picard-tools-${PICARD_VERSION}.zip
+#
 
 # libmaus/biobambam
 mkdir -p libmaus
@@ -194,31 +194,31 @@ popd
 # Third party tools install done
 
 # CPAN as in npg_npg_deploy
-cpanm --notest --reinstall App::cpanminus
-cpanm --quiet --notest --reinstall ExtUtils::ParseXS
-cpanm --quiet --notest --reinstall MooseX::Role::Parameterized
-cpanm --quiet --notest Alien::Tidyp
-cpanm --no-lwp --notest https://github.com/wtsi-npg/perl-dnap-utilities/releases/download/${DNAP_UTILITIES_VERSION}/WTSI-DNAP-Utilities-${DNAP_UTILITIES_VERSION}.tar.gz
+#cpanm --notest --reinstall App::cpanminus
+#cpanm --quiet --notest --reinstall ExtUtils::ParseXS
+#cpanm --quiet --notest --reinstall MooseX::Role::Parameterized
+#cpanm --quiet --notest Alien::Tidyp
+#cpanm --no-lwp --notest https://github.com/wtsi-npg/perl-dnap-utilities/releases/download/${DNAP_UTILITIES_VERSION}/WTSI-DNAP-Utilities-${DNAP_UTILITIES_VERSION}.tar.gz
 
 # WTSI NPG Perl repo dependencies
-cd /tmp
-git clone --branch devel --depth 1 https://github.com/wtsi-npg/ml_warehouse.git ml_warehouse.git
-git clone --branch devel --depth 1 https://github.com/wtsi-npg/npg_tracking.git npg_tracking.git
-#git clone --branch devel --depth 1 https://github.com/wtsi-npg/npg_seq_common.git npg_seq_common.git
-git clone --branch devel --depth 1 https://github.com/wtsi-npg/npg_qc.git npg_qc.git
+#cd /tmp
+#git clone --branch devel --depth 1 https://github.com/wtsi-npg/ml_warehouse.git ml_warehouse.git
+#git clone --branch devel --depth 1 https://github.com/wtsi-npg/npg_tracking.git npg_tracking.git
+##git clone --branch devel --depth 1 https://github.com/wtsi-npg/npg_seq_common.git npg_seq_common.git
+#git clone --branch devel --depth 1 https://github.com/wtsi-npg/npg_qc.git npg_qc.git
 
 
 #repos="/tmp/ml_warehouse.git /tmp/npg_tracking.git /tmp/npg_seq_common.git /tmp/npg_qc.git"
-repos="/tmp/ml_warehouse.git /tmp/npg_tracking.git /tmp/npg_qc.git"
+#repos="/tmp/ml_warehouse.git /tmp/npg_tracking.git /tmp/npg_qc.git"
 
 
-for repo in $repos
-do
-  cd "$repo"
-  cpanm --quiet --notest --installdeps . || find /home/travis/.cpanm/work -cmin -1 -name '*.log' -exec tail -n20  {} \;
-  perl Build.PL
-  ./Build
-  ./Build install
-done
+#for repo in $repos
+#do
+#  cd "$repo"
+#  cpanm --quiet --notest --installdeps . || find /home/travis/.cpanm/work -cmin -1 -name '*.log' -exec tail -n20  {} \;
+#  perl Build.PL
+#  ./Build
+#  ./Build install
+#done
 
 cd "$TRAVIS_BUILD_DIR"
