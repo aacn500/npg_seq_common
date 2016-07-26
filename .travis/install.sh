@@ -94,28 +94,12 @@ popd
 git clone --branch ${PB_CALIBRATION_VERSION} --depth 1 https://github.com/wtsi-npg/pb_calibration.git
 pushd pb_calibration/src
 autoreconf --force --install
-##./configure --with-io_lib=/tmp/io_lib-${STADEN_IO_LIB_VERSION} LD_RUN_PATH=/tmp/io_lib-${STADEN_IO_LIB_VERSION} --with-samtools=/tmp/samtools-0.1.19
 ./configure --with-samtools=/tmp/samtools-0.1.19 --with-io_lib=/tmp --prefix=/tmp
 make
 make install
 popd
 
 # htslib/samtools
-
-#wget -q https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSION}/htslib-${HTSLIB_VERSION}.tar.bz2 -O /tmp/htslib-${HTSLIB_VERSION}.tar.bz2
-#tar xfj /tmp/htslib-${HTSLIB_VERSION}.tar.bz2 -C /tmp
-#pushd /tmp/htslib-${HTSLIB_VERSION}
-#./configure --enable-plugins
-#make
-#popd
-
-#wget -q https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 -O /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2
-#tar xfj /tmp/samtools-${SAMTOOLS_VERSION}.tar.bz2 -C /tmp
-#pushd /tmp/samtools-${SAMTOOLS_VERSION}
-#./configure --enable-plugins --with-plugin-path=/tmp/htslib-${HTSLIB_VERSION}
-#make all plugins-htslib
-#sudo make install
-#popd
 
 git clone --branch 1.3.1-npg-Apr2016 --depth 1 https://github.com/wtsi-npg/htslib.git htslib
 pushd htslib
