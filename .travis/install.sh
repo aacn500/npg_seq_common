@@ -159,34 +159,39 @@ unzip picard-tools-${PICARD_VERSION}.zip
 
 
 # libmaus/biobambam
-mkdir -p libmaus
-if [ ! "$(ls -A libmaus)" ]; then
-git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus2.git libmaus
-pushd libmaus
-autoreconf -i -f
-./configure --prefix=/tmp
-make;
-else
-echo "LIBMAUS CACHE DETECTED: SKIPPING INSTALL" 
-pushd libmaus;
-fi
-make install
-popd
+#mkdir -p libmaus
+#if [ ! "$(ls -A libmaus)" ]; then
+#git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus2.git libmaus
+#pushd libmaus
+#autoreconf -i -f
+#./configure --prefix=/tmp
+#make;
+#else
+#echo "LIBMAUS CACHE DETECTED: SKIPPING INSTALL" 
+#pushd libmaus;
+#fi
+#make install
+#popd
 
  
-mkdir -p biobambam
-if [ ! "$(ls -A biobambam)" ]; then
-git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam2.git biobambam
-pushd biobambam
-autoreconf -i -f
-./configure --prefix=/tmp --with-libmaus2=/tmp
-make;
-else
-echo "BIOBAMBAM CACHE DETECTED: SKIPPING INSTALL"
-pushd biobambam;
-fi
-make install
-popd
+#mkdir -p biobambam
+#if [ ! "$(ls -A biobambam)" ]; then
+#git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam2.git biobambam
+#pushd biobambam
+#autoreconf -i -f
+#./configure --prefix=/tmp --with-libmaus2=/tmp
+#make;
+#else
+#echo "BIOBAMBAM CACHE DETECTED: SKIPPING INSTALL"
+#pushd biobambam;
+#fi
+#make install
+#popd
+#
+
+wget https://github.com/gt1/biobambam2/releases/download/2.0.50-release-20160705161609/biobambam2-2.0.50-release-20160705161609-x86_64-etch-linux-gnu.tar.gz -O biobambam2.tar.gz
+mkdir biobambam2
+tar xzf biobambam2.tar.gz -C biobambam2 --strip-components 1
 
 
 popd
