@@ -161,7 +161,7 @@ unzip picard-tools-${PICARD_VERSION}.zip
 # libmaus/biobambam
 mkdir -p libmaus
 if [ ! "$(ls -A libmaus)" ]; then
-git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus.git libmaus
+git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus2.git libmaus
 pushd libmaus
 autoreconf -i -f
 ./configure --prefix=/tmp
@@ -176,7 +176,7 @@ popd
  
 mkdir -p biobambam
 if [ ! "$(ls -A biobambam)" ]; then
-git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam.git biobambam
+git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam2.git biobambam
 pushd biobambam
 autoreconf -i -f
 ./configure --prefix=/tmp --with-libmaus=/tmp
