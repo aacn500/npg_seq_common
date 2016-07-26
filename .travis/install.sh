@@ -112,16 +112,22 @@ make install
 popd
 
 # htslib/samtools
-
+mkdir -p htslib
+if [ ! "$(ls -A htslib)" ]; then
 git clone --branch 1.3.1-npg-Apr2016 --depth 1 https://github.com/wtsi-npg/htslib.git htslib
 pushd htslib
 autoreconf -fi
 ./configure --prefix=/tmp --enable-plugins
 make
+else
+echo "HTSLIB CACHE DETECTED: SKIPPING INSTALL"
+fi
 make install
 popd
 
 
+mkdir -p samtools-irods
+if [ ! "$(ls -A samtools-irods)" ]; then
 git clone --branch 1.3.1-npg-May2016 --depth 1 https://github.com/wtsi-npg/samtools.git samtools-irods
 pushd samtools-irods
 mkdir -p acinclude.m4
@@ -133,6 +139,9 @@ aclocal -I acinclude.m4
 autoreconf -i
 ./configure --prefix=/tmp --with-htslib=/tmp/htslib --enable-plugins
 make
+else
+echo "SAMTOOLS-IRODS CACHE DETECTED: SKIPPING INSTALL"
+fi
 ln -s /tmp/samtools-irods/samtools /tmp/bin/samtools_irods
 popd
 

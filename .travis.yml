@@ -17,6 +17,8 @@ cache:
   - /tmp/biobambam
   - /tmp/bowtie
   - /tmp/bowtie2
+  - /tmp/htslib
+  - /tmp/samtools-irods
 
 env:
   global:
