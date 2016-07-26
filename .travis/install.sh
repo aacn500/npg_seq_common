@@ -42,11 +42,14 @@ ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
 
 # bowtie
 
-if [ ! -e bowtie ]; then
+mkdir -p bowtie
+if [ ! "$(ls -A bowtie)" ]; then
 git clone --branch ${BOWTIE_VERSION} --depth 1 https://github.com/dkj/bowtie.git bowtie
 pushd bowtie
 make
 popd;
+else
+echo "BOWTIE CACHE DETECTED: SKIPPING INSTALL"
 fi
 ln -s /tmp/bowtie/bowtie /tmp/bin/bowtie
 ln -s /tmp/bowtie/bowtie-build /tmp/bin/bowtie-build
@@ -55,11 +58,14 @@ ln -s /tmp/bowtie/bowtie-inspect /tmp/bin/bowtie-inspect
 
 # bowtie2 
 
-if [ ! -e bowtie2 ]; then
+mkdir -p bowtie2
+if [ ! "$(ls -A bowtie2)" ]; then
 git clone --branch ${BOWTIE2_VERSION} --depth 1 https://github.com/BenLangmead/bowtie2.git bowtie2
 pushd bowtie2
 make
 popd;
+else
+echo "BOWTIE2 CACHE DETECTED: SKIPPING INSTALL"
 fi
 
 ln -s /tmp/bowtie2/bowtie2 /tmp/bin/bowtie2
@@ -142,27 +148,32 @@ popd
 wget https://sourceforge.net/projects/picard/files/picard-tools/${PICARD_VERSION}/picard-tools-${PICARD_VERSION}.zip/download -O picard-tools-${PICARD_VERSION}.zip
 unzip picard-tools-${PICARD_VERSION}.zip
 
+
 # libmaus/biobambam
-if [ ! -e libmaus ]; then
+mkdir -p libmaus
+if [ ! "$(ls -A libmaus)" ]; then
 git clone --branch ${LIBMAUS_VERSION} --depth 1 https://github.com/gt1/libmaus.git libmaus
 pushd libmaus
 autoreconf -i -f
 ./configure --prefix=/tmp
 make;
 else
+echo "LIBMAUS CACHE DETECTED: SKIPPING INSTALL" 
 pushd libmaus;
 fi
 make install
 popd
 
 
-if [ ! -e biobambam ]; then
+mkdir -p biobambam
+if [ ! "$(ls -A biobambam)" ]; then
 git clone --branch ${BIOBAMBAM_VERSION} --depth 1 https://github.com/gt1/biobambam.git biobambam
 pushd biobambam
 autoreconf -i -f
 ./configure --prefix=/tmp
 make;
 else
+echo "BIOBAMBAM CACHE DETECTED: SKIPPING INSTALL"
 pushd biobambam;
 fi
 make install
