@@ -33,6 +33,17 @@ make
 ln -s /tmp/bwa0_6/bwa /tmp/bin/bwa0_6
 popd
 
+# blat
+
+wget https://users.soe.ucsc.edu/~kent/src/blatSrc35.zip
+unzip -q blatSrc35
+pushd blatSrc
+MACHTYPE="`uname -m`"
+mkdir -p ~/bin/$MACHTYPE
+mkdir -p ~/lib/$MACHTYPE
+make
+popd
+
 # smalt
 
 #wget http://downloads.sourceforge.net/project/smalt/smalt-${SMALT_VERSION}-bin.tar.gz
