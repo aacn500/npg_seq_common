@@ -486,6 +486,8 @@ subtest 'subtest 6' => sub {
 
       lives_ok{$bam->process()} q{Processed OK};
 
+      system(qq{diff $temp_dir/output_phix.bam.seqchksum.fifo $cram_seqchksum_fifo_name_phix});
+
       is (!-z "$temp_dir/phix.bam", 1, 'BAM file created with contents for PhiX');      
       is (!-z "$temp_dir/phix.bai", 1, 'BAM index created with contents for PhiX');      
       is (!-z "$temp_dir/metrics_phix.bam.json", 1, 'metrics json created with contents for PhiX');      
