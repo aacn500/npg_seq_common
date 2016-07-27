@@ -276,6 +276,7 @@ sub blat {
     clean_slate('blat');
 
     my $blat_command = qq{faToTwoBit -noMask fasta/$files[0] blat/$files[0].2bit};
+    system("mkdir -p blat");
     eval { system $blat_command; 1; }
     or do {
         carp "*** blat conversion failed: $EVAL_ERROR $SKIP_STRING";
