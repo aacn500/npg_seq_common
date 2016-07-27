@@ -35,10 +35,18 @@ popd
 
 # smalt
 
-wget http://downloads.sourceforge.net/project/smalt/smalt-${SMALT_VERSION}-bin.tar.gz
-tar -zxf smalt-${SMALT_VERSION}-bin.tar.gz
-ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
+#wget http://downloads.sourceforge.net/project/smalt/smalt-${SMALT_VERSION}-bin.tar.gz
+#tar -zxf smalt-${SMALT_VERSION}-bin.tar.gz
+#ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
 
+wget https://sourceforge.net/projects/smalt/files/smalt-0.7.4.4.tar.gz/download -O smalt.tar.gz
+mkdir -p smalt
+tar xzf smalt.tar.gz -C smalt --strip-components 1
+pushd smalt
+./configure --prefix=/tmp
+make
+make install
+popd
 
 # bowtie
 
