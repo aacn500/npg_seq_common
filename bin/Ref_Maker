@@ -7,7 +7,7 @@ use warnings;
 use FindBin qw($Bin);
 use lib ( -d "$Bin/../lib/perl5" ? "$Bin/../lib/perl5" : "$Bin/../lib" );
 use Carp;
-use Cwd qw(abs_path);
+use Cwd qw/abs_path getcwd/;
 use English qw(-no_match_vars);
 use File::Basename;
 use File::chdir;
@@ -274,7 +274,7 @@ sub smalt {
 
 sub blat {
     clean_slate('blat');
-
+    print("currently at " . getcwd() . "\n");
     my $blat_command = qq{faToTwoBit -noMask fasta/$files[0] blat/$files[0].2bit};
     eval { system $blat_command; 1; }
     or do {
