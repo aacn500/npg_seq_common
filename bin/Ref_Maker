@@ -275,12 +275,13 @@ sub smalt {
 sub blat {
     clean_slate('blat');
     my $current_dir = getcwd();
+    system("touch $current_dir/blat/$files[0].2bit");
+    print("currently at " . getcwd() . "\n");
+    system("ls /tmp/Ref_Maker*");
+    system("ls /tmp/Ref_Maker*/*");
     my $blat_command = qq{faToTwoBit -noMask $current_dir/fasta/$files[0] $current_dir/blat/$files[0].2bit};
     eval { system $blat_command; 1; }
     or do {
-    	print("currently at " . getcwd() . "\n");
-    	system("ls /tmp/Ref_Maker*");
-    	system("ls /tmp/Ref_Maker*/*");
         carp "*** blat conversion failed: $EVAL_ERROR $SKIP_STRING";
         log_timestamp( 'abort', 'blat' );
         return 0;
