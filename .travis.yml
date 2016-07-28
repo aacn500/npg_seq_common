@@ -6,7 +6,7 @@
 #   https://github.com/wtsi-npg/npg_qc
 
 sudo: required
-
+# yes see sudo is set to required
 language: perl
 
 perl:
