@@ -94,8 +94,8 @@ sub main { ##no critic (Subroutines::ProhibitExcessComplexity)
     $subs{'smalt'}  = \&smalt;
     $subs{'picard'} = \&picard;
     $subs{'npgqc'}  = \&gc_frac;
-
-    foreach my $tool (keys %subs) {
+    chdir $working_dir;
+    foreach my $tool (sort keys %subs) {
         if ($build{$tool}) {
             if (!$subs{$tool}->()) { push @failed, $tool; }
             chdir $working_dir;
@@ -277,6 +277,10 @@ sub blat {
     my $current_dir = getcwd();
     system("touch $current_dir/blat/$files[0].2bit");
     print("currently at " . getcwd() . "\n");
+    print("looking inside fasta file: \n");
+    system("head -n 5 $current_dir/fasta/$files[0]");
+    print("looking inside blat file: \n");
+    system("head -n 5 $current_dir/blat/$files[0].2bit");
     system("ls /tmp/Ref_Maker*");
     system("ls /tmp/Ref_Maker*/*");
     my $blat_command = qq{faToTwoBit -noMask $current_dir/fasta/$files[0] $current_dir/blat/$files[0].2bit};
