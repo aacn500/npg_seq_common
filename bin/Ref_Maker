@@ -279,6 +279,7 @@ sub blat {
     or do {
     	print("currently at " . getcwd() . "\n");
     	system("ls /tmp/Ref_Maker*");
+    	system("ls /tmp/Ref_Maker*/*");
         carp "*** blat conversion failed: $EVAL_ERROR $SKIP_STRING";
         log_timestamp( 'abort', 'blat' );
         return 0;
