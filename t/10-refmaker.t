@@ -27,7 +27,8 @@ SKIP: {
 
   chdir($tmp);
 
-  is(system("$startDir/bin/Ref_Maker &> Ref_Maker.log"), 0, 'Ref_Maker exit status');
+  # run Ref_Maker and redirect stdout AND stderr to Ref_Maker.log
+  is(system("$startDir/bin/Ref_Maker > Ref_Maker.log 2>&1"), 0, 'Ref_Maker exit status');
 
   # can't use checksum on Picard .dict, as it contains full path to fasta file
   my $picard = "picard/E-coli-K12.fa.dict";
