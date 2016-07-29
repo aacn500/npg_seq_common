@@ -39,8 +39,8 @@ wget https://users.soe.ucsc.edu/~kent/src/blatSrc35.zip
 unzip -q blatSrc35
 pushd blatSrc
 MACHTYPE="`uname -m`"
-mkdir -p ~/bin/$MACHTYPE
-mkdir -p ~/lib/$MACHTYPE
+mkdir -p $HOME/bin/$MACHTYPE
+mkdir -p $HOME/lib/$MACHTYPE
 make
 popd
 
