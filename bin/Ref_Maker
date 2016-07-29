@@ -283,6 +283,8 @@ sub blat {
     system("head -n 5 $current_dir/blat/$files[0].2bit");
     system("ls /tmp/Ref_Maker*");
     system("ls /tmp/Ref_Maker*/*");
+    # Is it faToTwoBit executable that travis cannot find?
+    system("faToTwoBit");
     my $blat_command = "faToTwoBit -noMask $current_dir/fasta/$files[0] $current_dir/blat/$files[0].2bit";
     eval { system("$blat_command"); 1; }
     or do {
