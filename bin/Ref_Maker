@@ -7,7 +7,7 @@ use warnings;
 use FindBin qw($Bin);
 use lib ( -d "$Bin/../lib/perl5" ? "$Bin/../lib/perl5" : "$Bin/../lib" );
 use Carp;
-use Cwd qw/abs_path getcwd/;
+use Cwd qw(abs_path);
 use English qw(-no_match_vars);
 use File::Basename;
 use File::chdir;
@@ -94,8 +94,8 @@ sub main { ##no critic (Subroutines::ProhibitExcessComplexity)
     $subs{'smalt'}  = \&smalt;
     $subs{'picard'} = \&picard;
     $subs{'npgqc'}  = \&gc_frac;
-    chdir $working_dir;
-    foreach my $tool (sort keys %subs) {
+
+    foreach my $tool (keys %subs) {
         if ($build{$tool}) {
             if (!$subs{$tool}->()) { push @failed, $tool; }
             chdir $working_dir;
@@ -274,19 +274,9 @@ sub smalt {
 
 sub blat {
     clean_slate('blat');
-    my $current_dir = getcwd();
-    system("touch $current_dir/blat/$files[0].2bit");
-    print("currently at " . getcwd() . "\n");
-    print("looking inside fasta file: \n");
-    system("head -n 5 $current_dir/fasta/$files[0]");
-    print("looking inside blat file: \n");
-    system("head -n 5 $current_dir/blat/$files[0].2bit");
-    system("ls /tmp/Ref_Maker*");
-    system("ls /tmp/Ref_Maker*/*");
-    # Is it faToTwoBit executable that travis cannot find?
-    system("faToTwoBit");
-    my $blat_command = "faToTwoBit -noMask $current_dir/fasta/$files[0] $current_dir/blat/$files[0].2bit";
-    eval { system("$blat_command"); 1; }
+
+    my $blat_command = qq{faToTwoBit -noMask fasta/$files[0] blat/$files[0].2bit};
+    eval { system $blat_command; 1; }
     or do {
         carp "*** blat conversion failed: $EVAL_ERROR $SKIP_STRING";
         log_timestamp( 'abort', 'blat' );
