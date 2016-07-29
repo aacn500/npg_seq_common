@@ -34,8 +34,8 @@ env:
 #    - TEST_AUTHOR=1 # disabled to avoid perl critic complaints
     - MACHTYPE="`uname -m`"
     - CLASSPATH="/tmp/picard-tools-${PICARD_VERSION}:/tmp/illumina2bam/dist"
-    - PATH="$PATH:/tmp/bin:/tmp/biobambam2/bin:~/bin/x86_64"
-    - LD_LIBRARY_PATH="/usr/local/lib:~/lib/x86_64"
+    - PATH="$PATH:/tmp/bin:/tmp/biobambam2/bin:~/bin/$MACHTYPE"
+    - LD_LIBRARY_PATH="/usr/local/lib:~/lib/$MACHTYPE"
 
 
 before_install:
