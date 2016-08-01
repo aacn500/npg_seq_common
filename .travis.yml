@@ -39,6 +39,8 @@ env:
 
 
 before_install:
+ - sudo rm /bin/sh
+ - sudo ln -s /bin/bash /bin/sh
  - ./.travis/before_install.sh
 install:
  - ./.travis/install.sh
