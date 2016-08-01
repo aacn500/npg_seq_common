@@ -458,7 +458,8 @@ subtest 'subtest 6' => sub {
       $expected_altchksum_cmd .= qq{$bamseqchksum verbose=0 inputformat=bam hash=sha512primesums512};
       $expected_altchksum_cmd .= qq{ > $temp_dir/output_phix.bam.sha512primesums512.seqchksum};
   
-      my $expected_scramble_cmd = qq{$scramble -I bam -O cram < $temp_dir/output_phix.bam.scramble.fifo };
+      my $expected_scramble_cmd = qq{$scramble -I bam -O cram -r $temp_dir/phix-illumina.fa };
+      $expected_scramble_cmd .= qq{< $temp_dir/output_phix.bam.scramble.fifo };
       $expected_scramble_cmd .= qq{| tee $temp_dir/output_phix.cram.fifo $cram_crai_fifo_name_phix $cram_md5_fifo_name_phix > $temp_dir/output_phix.cram};
 
       my $expected_cramchksum_cmd =  qq{set -o pipefail; cat $cram_fifo_name_phix | $bamseqchksum verbose=0 inputformat=cram };
