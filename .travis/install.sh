@@ -67,7 +67,7 @@ ln -s /tmp/bowtie/bowtie-build /tmp/bin/bowtie-build
 ln -s /tmp/bowtie/bowtie-inspect /tmp/bin/bowtie-inspect
 
 
-# bowtie2 
+# bowtie2
 
 git clone --branch ${BOWTIE2_VERSION} --depth 1 https://github.com/BenLangmead/bowtie2.git bowtie2
 pushd bowtie2
