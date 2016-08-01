@@ -458,10 +458,11 @@ subtest 'subtest 6' => sub {
       $expected_altchksum_cmd .= qq{$bamseqchksum verbose=0 inputformat=bam hash=sha512primesums512};
       $expected_altchksum_cmd .= qq{ > $temp_dir/output_phix.bam.sha512primesums512.seqchksum};
   
-      my $expected_scramble_cmd = qq{$scramble -I bam -O cram < $temp_dir/output_phix.bam.scramble.fifo };
+      my $expected_scramble_cmd = qq{$scramble -I bam -O cram -r $temp_dir/phix-illumina.fa };
+      $expected_scramble_cmd .= qq{< $temp_dir/output_phix.bam.scramble.fifo };
       $expected_scramble_cmd .= qq{| tee $temp_dir/output_phix.cram.fifo $cram_crai_fifo_name_phix $cram_md5_fifo_name_phix > $temp_dir/output_phix.cram};
 
-      my $expected_cramchksum_cmd =  qq{set -o pipefail; cat $cram_fifo_name_phix | $bamseqchksum verbose=0 inputformat=cram };
+      my $expected_cramchksum_cmd =  qq{set -o pipefail; cat $cram_fifo_name_phix | $bamseqchksum verbose=0 inputformat=cram reference=$temp_dir/phix-illumina.fa };
       $expected_cramchksum_cmd .= qq{| tee $cram_seqchksum_fifo_name_phix > $cram_seqchksum_file_name_phix};
 
       my $expected_cramindex_cmd = qq{set -o pipefail; cat $cram_crai_fifo_name_phix | $cram_index - $cram_crai_file_name_phix};
@@ -488,12 +489,6 @@ subtest 'subtest 6' => sub {
       cmp_deeply($bam->fork_cmds(), $expected_fork_cmds, 'commands for ForkManager generated correctly') or diag explain [$bam->fork_cmds(),$expected_fork_cmds];
 
       lives_ok{$bam->process()} q{Processed OK};
-
-      print("Cat bam.seqchksum\n");
-      system(qq{cat $temp_dir/output_phix.bam.seqchksum.fifo});
-      print("Cat cram.seqchksum\n");
-      system(qq{cat $cram_seqchksum_fifo_name_phix});
-
 
       is (!-z "$temp_dir/phix.bam", 1, 'BAM file created with contents for PhiX');      
       is (!-z "$temp_dir/phix.bai", 1, 'BAM index created with contents for PhiX');      

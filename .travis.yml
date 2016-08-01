@@ -6,7 +6,7 @@
 #   https://github.com/wtsi-npg/npg_qc
 
 sudo: required
-# yes see sudo is set to required
+
 language: perl
 
 perl:
@@ -18,18 +18,18 @@ env:
     - DNAP_UTILITIES_VERSION="0.5.1"
     - BWA_VERSION="0.5.10-mt_fixes.2"
     - BWA0_6_VERSION="v0.7.13"
+    - BLAT_VERSION="35"
+    - SMALT_VERSION="0.7.4.4"
     - BOWTIE_VERSION="v1.0.1-dkj-fopen_with_MM"
     - BOWTIE2_VERSION="v2.2.7"
     - PB_CALIBRATION_VERSION="v10.26"
     - STADEN_IO_LIB_VERSION="1.14.6"
-    - LIBMAUS_VERSION="2.0.225-release-20160715102613"
     - BIOBAMBAM_VERSION="2.0.50-release-20160705161609"
-    - HTSLIB_VERSION="1.3"
+    - HTSLIB_VERSION="1.3.1-npg-Apr2016"
     - SAMTOOLS1_VERSION="1.3.1-npg-May2016"
-    - SAMTOOLS_VERSION="0.1.18"
+    - SAMTOOLS_VERSION="0.1.19"
     - ILLUMINA2BAM_VERSION="1.18"
     - PICARD_VERSION="1.72"
-    - SMALT_VERSION="0.7.6"
     - TOOLS_INSTALLED=1
 #    - TEST_AUTHOR=1 # disabled to avoid perl critic complaints
     - MACHTYPE="`uname -m`"
@@ -39,24 +39,11 @@ env:
 
 
 before_install:
- - perl -e "system(\"/bin/sh -c \\\"echo $SHELL\\\"\");"
- - touch ex1.txt
- - touch ex2.txt
- - diff ex1.txt ex2.txt
- - ls -l /bin/
  - sudo rm /bin/sh
  - sudo ln -s /bin/bash /bin/sh
- - echo $MACHTYPE
- - echo $PATH
- - echo $HOME
  - ./.travis/before_install.sh
 install:
  - ./.travis/install.sh
 script:
  - ./.travis/script.sh
-after_script:
- - ls -al /tmp
- - ls -al /tmp/Ref_Maker_test*/*
- - echo "HOME is at $HOME"
- - ls -al $HOME/
- - find /tmp -name E-coli-K12.fa.dict -exec cat {} \;
+

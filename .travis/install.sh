@@ -35,8 +35,8 @@ popd
 
 # blat
 
-wget https://users.soe.ucsc.edu/~kent/src/blatSrc35.zip
-unzip -q blatSrc35
+wget https://users.soe.ucsc.edu/~kent/src/blatSrc${BLAT_VERSION}.zip
+unzip -q blatSrc${BLAT_VERSION}
 pushd blatSrc
 MACHTYPE="`uname -m`"
 mkdir -p $HOME/bin/$MACHTYPE
@@ -46,11 +46,7 @@ popd
 
 # smalt
 
-#wget http://downloads.sourceforge.net/project/smalt/smalt-${SMALT_VERSION}-bin.tar.gz
-#tar -zxf smalt-${SMALT_VERSION}-bin.tar.gz
-#ln -s /tmp/smalt-${SMALT_VERSION}-bin/smalt_x86_64 /tmp/bin/smalt
-
-wget https://sourceforge.net/projects/smalt/files/smalt-0.7.4.4.tar.gz/download -O smalt.tar.gz
+wget https://sourceforge.net/projects/smalt/files/smalt-${SMALT_VERSION}.tar.gz/download -O smalt.tar.gz
 mkdir -p smalt
 tar xzf smalt.tar.gz -C smalt --strip-components 1
 pushd smalt
@@ -71,7 +67,7 @@ ln -s /tmp/bowtie/bowtie-build /tmp/bin/bowtie-build
 ln -s /tmp/bowtie/bowtie-inspect /tmp/bin/bowtie-inspect
 
 
-# bowtie2 
+# bowtie2
 
 git clone --branch ${BOWTIE2_VERSION} --depth 1 https://github.com/BenLangmead/bowtie2.git bowtie2
 pushd bowtie2
@@ -93,11 +89,11 @@ ln -s /tmp/bowtie2/bowtie2-inspect-s /tmp/bin/bowtie2-inspect-s
 
 # samtools 0.1.19
 
-wget http://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2/download -O samtools-0.1.19.tar.bz2
-tar jxf samtools-0.1.19.tar.bz2
-pushd samtools-0.1.19
+wget http://sourceforge.net/projects/samtools/files/samtools/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2/download -O samtools-${SAMTOOLS_VERSION}.tar.bz2
+tar jxf samtools-${SAMTOOLS_VERSION}.tar.bz2
+pushd samtools-${SAMTOOLS_VERSION}
 make
-ln -s /tmp/samtools-0.1.19/samtools /tmp/bin/samtools
+ln -s /tmp/samtools-${SAMTOOLS_VERSION}/samtools /tmp/bin/samtools
 popd
 
 # staden_io_lib
@@ -123,7 +119,7 @@ popd
 
 # htslib/samtools
 
-git clone --branch 1.3.1-npg-Apr2016 --depth 1 https://github.com/wtsi-npg/htslib.git htslib
+git clone --branch ${HTSLIB_VERSION} --depth 1 https://github.com/wtsi-npg/htslib.git htslib
 pushd htslib
 autoreconf -fi
 ./configure --prefix=/tmp --enable-plugins
@@ -132,7 +128,7 @@ make install
 popd
 
 
-git clone --branch 1.3.1-npg-May2016 --depth 1 https://github.com/wtsi-npg/samtools.git samtools-irods
+git clone --branch ${SAMTOOLS1_VERSION} --depth 1 https://github.com/wtsi-npg/samtools.git samtools-irods
 pushd samtools-irods
 mkdir -p acinclude.m4
 pushd acinclude.m4
@@ -148,6 +144,7 @@ popd
 
 
 # illumina2bam
+
 git clone --branch V${ILLUMINA2BAM_VERSION} --depth 1 https://github.com/wtsi-npg/illumina2bam.git illumina2bam
 pushd illumina2bam
 ant -lib lib/bcel jar
@@ -160,9 +157,10 @@ unzip picard-tools-${PICARD_VERSION}.zip
 
 # biobambam
 
-wget https://github.com/gt1/biobambam2/releases/download/2.0.50-release-20160705161609/biobambam2-2.0.50-release-20160705161609-x86_64-etch-linux-gnu.tar.gz -O biobambam2.tar.gz
+wget https://github.com/gt1/biobambam2/releases/download/${BIOBAMBAM_VERSION}/biobambam2-${BIOBAMBAM_VERSION}-x86_64-etch-linux-gnu.tar.gz -O biobambam2.tar.gz
 mkdir biobambam2
 tar xzf biobambam2.tar.gz -C biobambam2 --strip-components 1
+
 
 popd
 
@@ -170,20 +168,16 @@ popd
 
 # CPAN as in npg_npg_deploy
 cpanm --notest --reinstall App::cpanminus
-cpanm --quiet --notest --reinstall ExtUtils::ParseXS
-cpanm --quiet --notest --reinstall MooseX::Role::Parameterized
-cpanm --quiet --notest Alien::Tidyp
 cpanm --no-lwp --notest https://github.com/wtsi-npg/perl-dnap-utilities/releases/download/${DNAP_UTILITIES_VERSION}/WTSI-DNAP-Utilities-${DNAP_UTILITIES_VERSION}.tar.gz
 
 # WTSI NPG Perl repo dependencies
 cd /tmp
 git clone --branch devel --depth 1 https://github.com/wtsi-npg/ml_warehouse.git ml_warehouse.git
 git clone --branch devel --depth 1 https://github.com/wtsi-npg/npg_tracking.git npg_tracking.git
-git clone --branch devel --depth 1 https://github.com/wtsi-npg/npg_seq_common.git npg_seq_common.git
 git clone --branch devel --depth 1 https://github.com/wtsi-npg/npg_qc.git npg_qc.git
 
 
-repos="/tmp/ml_warehouse.git /tmp/npg_tracking.git /tmp/npg_seq_common.git /tmp/npg_qc.git"
+repos="/tmp/ml_warehouse.git /tmp/npg_tracking.git /tmp/npg_qc.git"
 
 for repo in $repos
 do
