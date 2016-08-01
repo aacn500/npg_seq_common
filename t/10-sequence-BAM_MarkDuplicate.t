@@ -390,7 +390,9 @@ subtest 'subtest 6' => sub {
 
     my $temp_dir = tempdir( CLEANUP => 1);
     my $input = join q[/], $temp_dir, 'phix.bam';
+    my $ref = join q[/], $temp_dir, 'phix-illumina.fa';
     system("cp t/data/sequence/phix.bam $input");
+    system("cp t/data/sequence/references/PhiX/default/all/fasta/phix-illumina.fa $ref");
     my $output_root     = join q[/], $temp_dir, 'output_phix';
     my $output_bam      = $output_root . q[.bam];
     my $md_metrics_file = $output_root . '.markdups_metrics.txt';
@@ -404,6 +406,7 @@ subtest 'subtest 6' => sub {
                  subset           => 'phix',
                  id_run           => 1234,
                  position         => 2,
+                 reference         => $ref,
                );
       my $expected_mark_duplicate_cmd = qq{$bammarkduplicates I=$temp_dir/sorted.bam O=/dev/stdout tmpfile=$temp_dir/ M=$md_metrics_file};
       is($bam->mark_duplicate_cmd(), $expected_mark_duplicate_cmd, 'correct biobambam command');
